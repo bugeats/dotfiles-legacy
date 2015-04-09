@@ -1,1 +1,4 @@
 .DS_Store
+dotfiles/nvim/autoload/
+dotfiles/nvim/plugged/
+dotfiles/nvim/spell/

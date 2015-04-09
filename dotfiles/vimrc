@@ -1,0 +1,574 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+" Vundle
+" ------------------------------------------------------------------------------
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle (required!)
+Bundle 'gmarik/vundle'
+
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Bundles on Github
+" Bundle 'Rip-Rip/clang_complete'
+" Bundle 'StanAngeloff/php.vim'
+" Bundle 'chaquotay/ftl-vim-syntax'
+" Bundle 'eraserhd/vim-ios'
+" Bundle 'freeo/vim-kalisi'
+" Bundle 'heartsentwined/vim-ember-script'
+" Bundle 'heartsentwined/vim-emblem'
+" Bundle 'henrik/vim-ruby-runner'
+" Bundle 'juvenn/mustache.vim'
+" Bundle 'morhetz/gruvbox'
+" Bundle 'pangloss/vim-javascript'
+" Bundle 'sbl/scvim'
+" Bundle 'scrooloose/syntastic'
+" Bundle 'terryma/vim-smooth-scroll'
+" Bundle 'vim-ruby/vim-ruby'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Shougo/neocomplete.vim'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'davidoc/taskpaper.vim'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'groenewege/vim-less'
+Bundle 'ivyl/vim-bling'
+Bundle 'jakar/vim-json'
+Bundle 'junegunn/goyo.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'nono/vim-handlebars'
+Bundle 'rking/ag.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'wavded/vim-stylus'
+Bundle 'wookiehangover/jshint.vim'
+
+
+" Bundles on vim-scripts
+" Bundle 'FuzzyFinder'
+" Bundle 'L9'
+" Bundle 'closetag.vim'
+" Bundle 'cocoa.vim'
+" Bundle 'tComment'
+
+" what is this I don't even
+" Bundle 'Shougo/unite.vim'
+" Bundle 'thinca/vim-quickrun'
+
+" Vundle (required!)
+filetype plugin indent on
+
+" Preferences
+" ------------------------------------------------------------------------------
+
+" Don't syntax highlight past 160 cols (perf enhancement)
+set synmaxcol=160
+
+" Ag
+let g:aghighlight=1
+cabbrev Ack LAg
+
+" NerdTree
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\.DS_Store$']
+
+" Typeface. MacVim. Dat retina.
+set guifont=Monaco:h13
+set guifont=Inconsolata:h16
+" This is the best programming font. I declare it.
+set guifont=DroidSansMono:h14
+
+" Minimal status line
+set statusline=>>>>\ %t:%l:%c " file name
+set statusline+=%=%y%m\  " right-aligned file type [modified]
+
+" MacVim tabs
+set guitablabel=%M%t\ (%F)
+
+nnoremap td  :tabclose<CR>
+nnoremap th  :tabnext<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tabprev<CR>
+nnoremap tm  :tabm<Space>
+nnoremap tn  :tabnew<CR>
+nnoremap tt  :tabedit<Space>
+
+nnoremap t1  :tabn 1<CR>
+nnoremap t2  :tabn 2<CR>
+nnoremap t3  :tabn 3<CR>
+nnoremap t4  :tabn 4<CR>
+nnoremap t5  :tabn 5<CR>
+nnoremap t6  :tabn 6<CR>
+nnoremap t7  :tabn 7<CR>
+nnoremap t8  :tabn 8<CR>
+nnoremap t9  :tabn 9<CR>
+
+
+"Rename tabs to show tab# and # of viewports
+function! MyTabLine()
+    let s = '  '
+    let wn = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+        let buflist = tabpagebuflist(i)
+        let winnr = tabpagewinnr(i)
+        let s .= '%' . i . 'T'
+        let s .= (i == t ? '%1*' : '%2*')
+        let s .= ' '
+        let wn = tabpagewinnr(i,'$')
+
+        let s .= '['
+        let s .= (i== t ? '%#TabNumSel#' : '%#TabNum#')
+        let s .= i
+        let s .= ']'
+
+        " tab has windows
+        if tabpagewinnr(i,'$') > 1
+            let s .= '['
+            " make a dot for each window in the tab
+            let c = 1
+            while c <= (tabpagewinnr(i,'$') > 1 ? wn : '')
+              let s .= '.'
+              let c += 1
+            endwhile
+            let s .= ']'
+        end
+
+        let s .= ' %*'
+        let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+        let bufnr = buflist[winnr - 1]
+        let file = bufname(bufnr)
+        let buftype = getbufvar(bufnr, 'buftype')
+        if buftype == 'nofile'
+            if file =~ '\/.'
+                let file = substitute(file, '.*\/\ze.', '', '')
+            endif
+        else
+            let file = fnamemodify(file, ':p:t')
+        endif
+        if file == ''
+            let file = '[No Name]'
+        endif
+        let s .= '  '
+        let s .= file
+        let s .= (i == t ? '%m' : '')
+        let i = i + 1
+        let s .= '  '
+    endwhile
+    let s .= '%T%#TabLineFill#%=  '
+    return s
+endfunction
+set stal=2
+
+set tabline=%!MyTabLine()
+
+set autoindent
+set autoread
+" set cursorcolumn
+set cursorline
+set expandtab
+set hlsearch
+set ignorecase
+
+
+set list
+set macmeta
+set nobackup
+set noerrorbells " don't beep
+set noswapfile
+set nowrap
+set number
+set ruler
+set rulerformat=%cx%l%V%=%P
+set shiftwidth=4
+set smartindent
+set tabstop=4
+set visualbell " don't beep
+set wildignore=*.swp,*.pyc
+
+syntax enable
+set background=dark
+" colorscheme solarized
+" colorscheme kalisi
+" colorscheme gruvbox
+" colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
+
+
+highlight TabLineSel guifg=orange
+
+" highlight SignColumn guibg=#073642
+" highlight GitGutterAdd guifg=#859900 guibg=#073642
+" highlight GitGutterChange guifg=#b58900 guibg=#073642
+" highlight GitGutterChangeDelete guifg=#cb4b16 guibg=#073642
+" highlight GitGutterDelete guifg=#d30102 guibg=#073642
+
+if has('gui_running')
+    set guioptions=c
+    set guioptions-=T " hide toolbar
+    set guioptions-=r " hide scrollbar
+    " set background=light
+    " try something else for a bit
+    " color goodeye
+else
+    set background=dark
+endif
+
+" Movement
+" ------------------------------------------------------------------------------
+
+" j/k moves even for a wrapping line
+nmap j gj
+nmap k gk
+
+
+" TaskPaper
+" ------------------------------------------------------------------------------
+
+function! s:taskpaper_setup()
+    set nonumber
+endfunction
+
+" Locals for .taskpaper files
+autocmd Filetype taskpaper setlocal wrap nonumber nolist ts=4 sw=4 noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+" \ew edit Work TODOs
+nnoremap <leader>tw :e ~/Dropbox/Taskpaper/Work.taskpaper<cr>
+" \el edit Life TODOs
+nnoremap <leader>tl :e ~/Dropbox/Taskpaper/Life.taskpaper<cr>
+
+
+" Env Switches
+" ------------------------------------------------------------------------------
+
+if !empty(matchstr($VIMRUNTIME, "Tasks"))
+
+    " MacVim Tasks
+    "---------------------------------------------------------------------------
+    set background=light
+    colorscheme solarized
+    set guifont=DroidSansMono:h14
+    cd ~/Dropbox/TaskPaper
+    " Open NERDTree on startup
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " Wut
+    set nonumber
+    " autocmd BufRead * :Goyo
+
+else
+    " Default
+    "---------------------------------------------------------------------------
+    " Show the cursor column while in insert mode
+    " (good for whitespace-sensitive languages)
+    au InsertEnter * set cursorcolumn
+    au InsertLeave * set nocursorcolumn
+endif
+
+
+" Filetypes
+" ------------------------------------------------------------------------------
+
+" Show current file type:
+"   :set filetype?
+augroup filetypes
+    autocmd!
+    autocmd FileType json       set equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
+    autocmd Filetype coffee     setlocal ts=2 sw=2 expandtab
+    autocmd Filetype css        setlocal ts=2 sw=2 expandtab
+    autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
+    autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype html       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
+    " autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+    autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
+    autocmd Filetype ruby       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype stylus     setlocal ts=2 sw=2 expandtab
+    autocmd Filetype less       setlocal ts=2 sw=2 expandtab
+    " autocmd Filetype taskpaper  setlocal nolist
+    autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
+augroup END
+
+ 
+" Leader Keys
+" ------------------------------------------------------------------------------
+
+" \ev Edit this file
+nnoremap <leader>ev :e $MYVIMRC<cr>
+"
+" \ec Edit current color scheme
+nnoremap <leader>ec :HOME/.vim/colors/goodeye.vim<cr>
+
+" \rv re-read this file
+nnoremap <leader>rv :source $MYVIMRC<cr>
+
+" \d show/hide NerdTree
+nnoremap <leader>d :NERDTreeToggle<cr>
+
+" \l shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" \p to show fuzzy search
+nnoremap <leader>p :CtrlP<cr>
+" \P clear fuzzy search cache
+nnoremap <leader>P :CtrlPClearCache<cr>
+
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|svn)$'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|build$\|test$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+" " \p or \f to show FuzzyFinder
+" nnoremap <leader>p :FufCoverageFile<cr>
+" nnoremap <leader>f :FufCoverageFile<cr>
+" let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class|png|gif|jpg|jar)$|(^|[/\\])(\.(hg|git|bzr|svn)|(.DS_Store|.gitignore|bytecode|submodules|node_modules|bower_components|classes|exports|gef.*|perspectives.*|gsr.*|jacf.*))($|[/\\])'
+" let g:fuf_coveragefile_exclude = '\v\~$|\.(class|png|gif|jpg|jar|o|exe|dll|bak|orig|swp)$|(^|[/\\])(\.(hg|git|bzr|svn)|(.DS_Store|.gitignore|bytecode|classes|submodules|node_modules|bower_components))($|[/\\])'
+" let g:fuf_dir_exclude = '\v\~$|(^|[/\\])(\.(hg|git|bzr|svn)|(.DS_Store|.gitignore|bytecode|submodules|node_modules|bower_components|classes|exports|gef.*|perspectives.*|gsr.*|jacf.*))($|[/\\])'
+
+
+" Window Movement
+" ------------------------------------------------------------------------------
+
+function! WinMove(key) 
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr()) "we havent moved
+    if (match(a:key,'[jk]')) "were we going up/down
+      wincmd v
+    else 
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
+ 
+" Move windows
+map <C-h> :call WinMove('h')<cr>
+map <C-k> :call WinMove('k')<cr>
+map <C-l> :call WinMove('l')<cr>
+map <C-j> :call WinMove('j')<cr>
+ 
+" Rotate window
+map <C-;> <C-W>r
+
+" Resize window (arrow keys)
+nmap <left>  :3wincmd <<cr>
+nmap <right> :3wincmd ><cr>
+nmap <up>    :3wincmd +<cr>
+nmap <down>  :3wincmd -<cr>
+
+" Mappings
+" ------------------------------------------------------------------------------
+
+" Pressing ESC will clear any current search term highlighting
+nnoremap <esc> :noh<return><esc>
+
+" Pressing 'K' will split the line ('cause 'J' will join it)
+nnoremap K i<CR><Esc>
+
+" Pressing spacebar centers to cursor position
+nmap <space> zz
+
+" Bubble single lines up/down (using unimpaired) 
+nmap <M-k> [e
+nmap <M-j> ]e
+" Indent single lines left/right  
+nmap <M-h> <<
+nmap <M-l> >>
+" Visual mode bubble multiple lines up/down (using unimpaired)
+vmap <M-k> [e`[V`]
+vmap <M-j> ]e`[V`]
+" Visual mode bubble multiple lines left/right 
+vmap <M-h> <`[V`]
+vmap <M-l> >`[V`]
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Map Command-<n> to tabs
+map <D-1> :tabn 1<CR>
+map <D-2> :tabn 2<CR>
+map <D-3> :tabn 3<CR>
+map <D-4> :tabn 4<CR>
+map <D-5> :tabn 5<CR>
+map <D-6> :tabn 6<CR>
+map <D-7> :tabn 7<CR>
+map <D-8> :tabn 8<CR>
+map <D-9> :tabn 9<CR>
+
+map! <D-1> <C-O>:tabn 1<CR>
+map! <D-2> <C-O>:tabn 2<CR>
+map! <D-3> <C-O>:tabn 3<CR>
+map! <D-4> <C-O>:tabn 4<CR>
+map! <D-5> <C-O>:tabn 5<CR>
+map! <D-6> <C-O>:tabn 6<CR>
+map! <D-7> <C-O>:tabn 7<CR>
+map! <D-8> <C-O>:tabn 8<CR>
+map! <D-9> <C-O>:tabn 9<CR>
+
+" Show syntax highlighting groups for word under cursor (ctrl-shift-p)
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Xcode
+" ------------------------------------------------------------------------------
+" http://stackoverflow.com/questions/11519891/using-vim-instead-of-or-with-xcode-for-ios-development
+
+" Disable NeoComplete
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc = 1
+let g:neocomplete#force_omni_input_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.objc =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.objcpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:clang_complete_auto = 1
+let g:clang_auto_select = 1
+let g:clang_use_library = 1
+
+if len(glob(getcwd() . '/*.xcodeproj')) > 0
+    let &makeprg = 'xcodebuild'
+endif
+
+au BufNewFile,BufRead *.mm set filetype=objc
+
+
+" CoffeeScript
+" ------------------------------------------------------------------------------
+
+let coffee_no_trailing_space_error = 1
+
+" .ojc files are coffeescript
+au BufRead,BufNewFile *.ojc set filetype=php
+
+" tComment
+" ------------------------------------------------------------------------------
+
+call tcomment#DefineType('python', '# %s')
+call tcomment#DefineType('coffee', '# %s')
+call tcomment#DefineType('sass', '// %s')
+call tcomment#DefineType('slim', '/ %s')
+call tcomment#DefineType('cucumber', '# %s')
+
+" GitGutter
+" ------------------------------------------------------------------------------
+
+" Back off there gitgutter, and stop slowing down tab rendering
+let g:gitgutter_eager = 0
+
+" NeoComplete
+" ------------------------------------------------------------------------------
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
