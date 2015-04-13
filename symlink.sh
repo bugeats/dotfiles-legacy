@@ -2,7 +2,7 @@
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-FILES=$DIR/dotfiles/*
+FILES=$DIR/src/*
 
 for FILE_PATH in $FILES; do
   FILE_NAME=$(basename $FILE_PATH)
