@@ -16,3 +16,7 @@ export PS1="\w\$(parse_git_branch) $ "
 
 alias vd='git diff | mvim -'
 
+# ----
+
+# Now load general profile
+. ~/.profile

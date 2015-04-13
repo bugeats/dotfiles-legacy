@@ -93,6 +93,7 @@ set tabstop=4                 " use four space chars when pressing <tab>
 set visualbell                " don't beep
 set wildignore=*.swp,*.pyc
 
+let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 
 " Mappings
 " ------------------------------------------------------------------------------
