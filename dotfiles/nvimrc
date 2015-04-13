@@ -42,6 +42,7 @@ Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'szw/vim-ctrlspace'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
@@ -68,6 +69,7 @@ set expandtab                 " insert spaces instead when pressing <tab>
 set formatoptions-=cro        " no annoying comment autoformat foo
 set guifont=DroidSansMono:h14 " This is the best programming font. I declare it.
 set guitablabel=%M%t\ (%F)    " minimal GUI tab label
+set hidden                    " Don't need to see abandoned buffers
 set hlsearch
 set ignorecase
 set list
@@ -79,6 +81,7 @@ set nowrap
 set number
 set ruler
 set rulerformat=%cx%l%V%=%P
+set shell=/bin/bash
 set shiftwidth=4              " default to 4 spaces for indentation
 set showtabline=2             " always show tab line
 set smartindent
@@ -144,7 +147,7 @@ nnoremap <Leader>p :CtrlP<cr>
 nnoremap <Leader>P :CtrlPClearCache<cr>
 
 " \f global search with Ag
-nnoremap <Leader>f :LAg
+nnoremap <Leader>f :LAg<space>
 
 " dup a line/selection, with commented version above
 vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
