@@ -9,6 +9,8 @@ Autofoo:
 
 ## Neovim
 
+![Neovim Looking Pretty](http://i.imgur.com/HBaCTAu.png)
+
 If you want to run Neovim and see pretty colors, you have two options:
 
 - [iTerm 2 nightly build](https://www.iterm2.com/downloads/nightly/#/section/home).
