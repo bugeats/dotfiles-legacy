@@ -4,6 +4,7 @@
 
 " Much Inspiration:
 "   http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+"   https://github.com/junegunn/dotfiles/blob/master/vimrc
 
 set nocompatible " be iMproved
 filetype off " required!
@@ -31,9 +32,9 @@ Plug 'honza/vim-snippets'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
 Plug 'jelera/vim-javascript-syntax'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'kassio/neoterm'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'marijnh/tern_for_vim'
@@ -311,7 +312,10 @@ let NERDTreeIgnore=['\.DS_Store$']
 " Ag / Project Search
 " ------------------------------------------------------------------------------
 
+let g:agprg="/usr/local/bin/ag --column"
+
 let g:aghighlight=1
+"
 " Alias Ack command for Ag (old habbit)
 cabbrev Ack LAg
 
@@ -319,25 +323,25 @@ cabbrev Ack LAg
 " Window Movement
 " ------------------------------------------------------------------------------
 
-function! WinMove(key) 
+function! WinMove(key)
   let t:curwin = winnr()
   exec "wincmd ".a:key
   if (t:curwin == winnr()) " we havent moved
     if (match(a:key,'[jk]')) " were we going up/down
       wincmd v
-    else 
+    else
       wincmd s
     endif
     exec "wincmd ".a:key
   endif
 endfunction
- 
+
 " Window movement by CTRL prefix
 map <C-h> :call WinMove('h')<cr>
 map <C-k> :call WinMove('k')<cr>
 map <C-l> :call WinMove('l')<cr>
 map <C-j> :call WinMove('j')<cr>
- 
+
 " Resize window (arrow keys)
 nmap <left>  :3wincmd <<cr>
 nmap <right> :3wincmd ><cr>
@@ -411,12 +415,3 @@ if has('nvim')
     au WinEnter *pid:* call feedkeys('i')
 endif
 
-" ----
-
-" augroup BgHighlight
-"     autocmd!
-"     autocmd WinEnter * set syntax=on
-"     autocmd WinLeave * set syntax=faded
-" augroup END
-"
-" doautocmd BgHighlight WinEnter -
