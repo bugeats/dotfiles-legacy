@@ -17,41 +17,46 @@ filetype off " required!
 
 call plug#begin('~/.nvim/plugged')
 
+" Plug 'SirVer/ultisnips'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'benekastah/neomake'
+" Plug 'honza/vim-snippets'
+" Plug 'szw/vim-ctrlspace'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
+Plug 'benekastah/neomake'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'ervandew/supertab'
 Plug 'groenewege/vim-less'
-Plug 'honza/vim-snippets'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
-Plug 'jelera/vim-javascript-syntax'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'mkitt/tabline.vim'
+Plug 'morhetz/gruvbox'
+Plug 'mxw/vim-jsx'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'szw/vim-ctrlspace'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wavded/vim-stylus'
-Plug 'wookiehangover/jshint.vim'
 Plug 'zhaocai/GoldenView.Vim'
 
 call plug#end()
@@ -223,6 +228,8 @@ augroup END
 
 set background=dark
 colorscheme Tomorrow-Night
+" colorscheme gruvbox
+" colorscheme seoul256
 
 " Tomorrow Night Colors
 let s:foreground = "#c5c8c6"
@@ -238,9 +245,9 @@ let s:aqua       = "#8abeb7"
 let s:blue       = "#81a2be"
 let s:purple     = "#b294bb"
 let s:window     = "#4d5057"
-
-" Custom Colors
-let s:fadedorange = "#5d4535"
+"
+" " Custom Colors
+" let s:fadedorange = "#5d4535"
 
 " TODO this shit doesn't work in Neovim.app
 
@@ -250,7 +257,6 @@ let s:fadedorange = "#5d4535"
 " highlight TabLineFill guibg=s:window
 
 highlight TabLineSel guifg=orange
-highlight JSHintError ctermbg=88 guibg=s:fadedorange
 
 " Show syntax highlighting groups for word under cursor (ctrl-s)
 nmap <C-S> :call <SID>SynStack()<CR>
@@ -371,12 +377,6 @@ call tcomment#DefineType('cucumber', '# %s')
 " Back off there gitgutter, and stop slowing down tab rendering
 let g:gitgutter_eager = 0
 
-
-" JSHint
-" ------------------------------------------------------------------------------
-
-let JSHintUpdateWriteOnly=1
-
 " EasyAlign
 " ------------------------------------------------------------------------------
 
@@ -387,31 +387,45 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)"
 
 
+" Javascript
+" ------------------------------------------------------------------------------
+
+let g:used_javascript_libs = 'lodash,react'
+
+
+" Neomake
+" ------------------------------------------------------------------------------
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+autocmd! BufWritePost * Neomake
+
+
 " Neovim Terminal Mode
 " ------------------------------------------------------------------------------
 
-let g:terminal_color_0  = '#2e3436'
-let g:terminal_color_1  = '#cc0000'
-let g:terminal_color_2  = '#4e9a06'
-let g:terminal_color_3  = '#c4a000'
-let g:terminal_color_4  = '#3465a4'
-let g:terminal_color_5  = '#75507b'
-let g:terminal_color_6  = '#0b939b'
-let g:terminal_color_7  = '#d3d7cf'
-let g:terminal_color_8  = s:red
-let g:terminal_color_9  = s:yellow
-let g:terminal_color_10 = s:orange
-let g:terminal_color_11 = s:green
-let g:terminal_color_12 = s:aqua
-let g:terminal_color_13 = s:blue
-let g:terminal_color_14 = s:purple
-let g:terminal_color_15 = s:window
+" let g:terminal_color_0  = '#2e3436'
+" let g:terminal_color_1  = '#cc0000'
+" let g:terminal_color_2  = '#4e9a06'
+" let g:terminal_color_3  = '#c4a000'
+" let g:terminal_color_4  = '#3465a4'
+" let g:terminal_color_5  = '#75507b'
+" let g:terminal_color_6  = '#0b939b'
+" let g:terminal_color_7  = '#d3d7cf'
+" let g:terminal_color_8  = s:red
+" let g:terminal_color_9  = s:yellow
+" let g:terminal_color_10 = s:orange
+" let g:terminal_color_11 = s:green
+" let g:terminal_color_12 = s:aqua
+" let g:terminal_color_13 = s:blue
+" let g:terminal_color_14 = s:purple
+" let g:terminal_color_15 = s:window
 
 if has('nvim')
     " backtick sends true escape
-    tnoremap ` <Esc>
-    " terminal mode escapes just like insert mode
-    tnoremap <Esc> <c-\><c-n>
+    " tnoremap ` <Esc>
+    " pre Esc twice to exit
+    tnoremap <Esc><Esc> <c-\><c-n>
     au WinEnter *pid:* call feedkeys('i')
 endif
 
