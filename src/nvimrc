@@ -35,19 +35,20 @@ Plug 'ervandew/supertab'
 Plug 'groenewege/vim-less'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
+Plug 'lfilho/cosco.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'mkitt/tabline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mxw/vim-jsx'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
@@ -69,6 +70,7 @@ syntax on
 
 set autoindent
 set autoread
+set background=dark
 set clipboard=unnamed         " support OS X clipboard
 set cursorline
 set expandtab                 " insert spaces instead when pressing <tab>
@@ -160,6 +162,10 @@ nnoremap <Leader>f :LAg<space>
 vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
 nnoremap <Leader>c V y gv :TComment<cr> gv<Esc> p
 
+" <Leader>; auto append semicolon (or comma)
+nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
+
+
 " Movement
 " ------------------------------------------------------------------------------
 
@@ -221,51 +227,6 @@ augroup filetypes
     autocmd Filetype html setlocal ts=4 sw=4 expandtab
     autocmd Filetype less setlocal ts=4 sw=4 expandtab
 augroup END
-
-
-" Color Scheme
-" ------------------------------------------------------------------------------
-
-set background=dark
-colorscheme Tomorrow-Night
-" colorscheme gruvbox
-" colorscheme seoul256
-
-" Tomorrow Night Colors
-let s:foreground = "#c5c8c6"
-let s:background = "#1d1f21"
-let s:selection  = "#373b41"
-let s:line       = "#282a2e"
-let s:comment    = "#969896"
-let s:red        = "#cc6666"
-let s:orange     = "#de935f"
-let s:yellow     = "#f0c674"
-let s:green      = "#b5bd68"
-let s:aqua       = "#8abeb7"
-let s:blue       = "#81a2be"
-let s:purple     = "#b294bb"
-let s:window     = "#4d5057"
-"
-" " Custom Colors
-" let s:fadedorange = "#5d4535"
-
-" TODO this shit doesn't work in Neovim.app
-
-" highlight StatusLine guifg=s:line guibg=s:window
-" highlight StatusLineNC guifg=s:foreground guibg=s:window
-" highlight TabLine guifg=s:line guibg=s:window
-" highlight TabLineFill guibg=s:window
-
-highlight TabLineSel guifg=orange
-
-" Show syntax highlighting groups for word under cursor (ctrl-s)
-nmap <C-S> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 
 " Fuzzy Search
@@ -390,8 +351,36 @@ nmap ga <Plug>(EasyAlign)"
 " Javascript
 " ------------------------------------------------------------------------------
 
-let g:used_javascript_libs = 'lodash,react'
+" Tomorrow-Night colors
+"   Keyword: orange
+"   Structure: purple
+"   Identifier: red
+"   Operator: aqua
+"   String: green
+"   cType: yellow
 
+highlight link javascriptExport Keyword
+highlight link javascriptImport Keyword
+highlight link javascriptReturn Structure
+highlight link javascriptConditional Structure
+highlight link javascriptConditionalElse Structure
+highlight link javaScriptBraces Operator
+highlight link javascriptBraces Operator
+highlight link javascriptParens Operator
+
+" JSX (React)
+highlight link xmlTagName cType
+highlight link xmlTag cType
+highlight link xmlEndTag cType
+highlight link xmlAttrib cType
+highlight link xmlEqual cType
+
+
+" Auto Pairs
+" ------------------------------------------------------------------------------
+
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 " Neomake
 " ------------------------------------------------------------------------------
@@ -404,23 +393,6 @@ autocmd! BufWritePost * Neomake
 " Neovim Terminal Mode
 " ------------------------------------------------------------------------------
 
-" let g:terminal_color_0  = '#2e3436'
-" let g:terminal_color_1  = '#cc0000'
-" let g:terminal_color_2  = '#4e9a06'
-" let g:terminal_color_3  = '#c4a000'
-" let g:terminal_color_4  = '#3465a4'
-" let g:terminal_color_5  = '#75507b'
-" let g:terminal_color_6  = '#0b939b'
-" let g:terminal_color_7  = '#d3d7cf'
-" let g:terminal_color_8  = s:red
-" let g:terminal_color_9  = s:yellow
-" let g:terminal_color_10 = s:orange
-" let g:terminal_color_11 = s:green
-" let g:terminal_color_12 = s:aqua
-" let g:terminal_color_13 = s:blue
-" let g:terminal_color_14 = s:purple
-" let g:terminal_color_15 = s:window
-
 if has('nvim')
     " backtick sends true escape
     " tnoremap ` <Esc>
@@ -428,4 +400,21 @@ if has('nvim')
     tnoremap <Esc><Esc> <c-\><c-n>
     au WinEnter *pid:* call feedkeys('i')
 endif
+
+
+" Color Scheme
+" ------------------------------------------------------------------------------
+
+" Show syntax highlighting groups for word under cursor (ctrl-s)
+nmap <C-S> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+colorscheme Tomorrow-Night
+
+highlight TabLineSel guifg=orange
 
