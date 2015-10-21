@@ -2,3 +2,4 @@
 src/nvim/autoload/
 src/nvim/plugged/
 src/nvim/spell/
+src/nvim/shada/
