@@ -17,12 +17,6 @@ filetype off " required!
 
 call plug#begin('~/.nvim/plugged')
 
-" Plug 'SirVer/ultisnips'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'benekastah/neomake'
-" Plug 'honza/vim-snippets'
-" Plug 'szw/vim-ctrlspace'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -37,15 +31,12 @@ Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'lfilho/cosco.vim'
-Plug 'marijnh/tern_for_vim'
 Plug 'mkitt/tabline.vim'
-Plug 'morhetz/gruvbox'
 Plug 'mxw/vim-jsx'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
@@ -138,7 +129,8 @@ vmap <M-l> >`[V`]
 " Leader Keys
 " ------------------------------------------------------------------------------
 
-let mapleader = "\<Space>" " use spacebar for leader!
+" use spacebar for leader!
+let mapleader = "\<Space>"
 
 " \q ever so slightly faster quit command
 nnoremap <Leader>q :q<CR>
@@ -177,6 +169,7 @@ nmap k gk
 " Navigation
 " ------------------------------------------------------------------------------
 
+" Tab nav shortcuts
 nnoremap td  :tabclose<CR>
 nnoremap th  :tabnext<CR>
 nnoremap tj  :tabnext<CR>
@@ -237,37 +230,6 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 
-" Tab Completion
-" ------------------------------------------------------------------------------
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-
-" Expand Text
-" ------------------------------------------------------------------------------
-
-let g:expand_region_text_objects = {
-      \ 'iw'  :0,
-      \ 'iW'  :0,
-      \ 'i"'  :0,
-      \ 'i''' :0,
-      \ 'i]'  :1,
-      \ 'ib'  :1,
-      \ 'iB'  :1,
-      \ 'il'  :0,
-      \ 'ip'  :0,
-      \ 'ie'  :0,
-      \ }
-
-
 " NerdTree
 " ------------------------------------------------------------------------------
 
@@ -315,6 +277,7 @@ nmap <right> :3wincmd ><cr>
 nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
+
 " CoffeeScript
 " ------------------------------------------------------------------------------
 
@@ -322,6 +285,7 @@ let coffee_no_trailing_space_error = 1
 
 " .ojc files are coffeescript
 au BufRead,BufNewFile *.ojc set filetype=php
+
 
 " tComment
 " ------------------------------------------------------------------------------
@@ -332,11 +296,13 @@ call tcomment#DefineType('sass', '// %s')
 call tcomment#DefineType('slim', '/ %s')
 call tcomment#DefineType('cucumber', '# %s')
 
+
 " GitGutter
 " ------------------------------------------------------------------------------
 
 " Back off there gitgutter, and stop slowing down tab rendering
 let g:gitgutter_eager = 0
+
 
 " EasyAlign
 " ------------------------------------------------------------------------------
@@ -359,6 +325,7 @@ nmap ga <Plug>(EasyAlign)"
 "   String: green
 "   cType: yellow
 
+" Hacks to force tomorrow night theme colors the way I like
 highlight link javascriptExport Keyword
 highlight link javascriptImport Keyword
 highlight link javascriptReturn Structure
@@ -381,6 +348,7 @@ highlight link xmlEqual cType
 
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
+
 
 " Neomake
 " ------------------------------------------------------------------------------
@@ -418,3 +386,12 @@ colorscheme Tomorrow-Night
 
 highlight TabLineSel guifg=orange
 
+
+" < That's all folks >
+"  ------------------
+"         \   ^__^
+"          \  (oo)\_______
+"             (__)\       )\/\
+"                 ||----w |
+"                 ||     ||
+" ------------------------------------------------------------------------------
