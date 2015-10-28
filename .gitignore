@@ -1,5 +1,5 @@
 .DS_Store
-src/nvim/autoload/
-src/nvim/plugged/
-src/nvim/spell/
-src/nvim/shada/
+src/config/nvim/autoload/
+src/config/nvim/plugged/
+src/config/nvim/spell/
+src/config/nvim/shada/

@@ -15,7 +15,7 @@ filetype off " required!
 
 " :PlugUpdate - install or update plugins
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Valloric/YouCompleteMe'
