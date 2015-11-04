@@ -62,6 +62,7 @@ syntax on
 set autoindent
 set autoread
 set background=dark
+set backupdir=./.backup,.,/tmp
 set clipboard=unnamed         " support OS X clipboard
 set cursorline
 set expandtab                 " insert spaces instead when pressing <tab>
@@ -353,7 +354,7 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " Neomake
 " ------------------------------------------------------------------------------
 
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint_d']
 
 autocmd! BufWritePost * Neomake
 
