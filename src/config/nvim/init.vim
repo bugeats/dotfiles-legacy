@@ -126,6 +126,9 @@ vmap <M-j> ]e`[V`]
 vmap <M-h> <`[V`]
 vmap <M-l> >`[V`]
 
+imap <S-BS> <C-W>
+inoremap <S-BS> <C-W>
+set backspace=indent,eol,start
 
 " Leader Keys
 " ------------------------------------------------------------------------------
@@ -200,6 +203,7 @@ nnoremap t9  :tabn 9<CR>
 augroup filetypes
     autocmd!
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
+    autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype coffee     setlocal ts=2 sw=2 expandtab
     autocmd Filetype css        setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
@@ -217,10 +221,10 @@ augroup filetypes
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
-    " TEMP for this dumb project
-    autocmd Filetype html setlocal ts=4 sw=4 expandtab
-    autocmd Filetype less setlocal ts=4 sw=4 expandtab
 augroup END
+
+" No git-gutter for taskpaper files
+autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
 
 " Fuzzy Search
