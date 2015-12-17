@@ -3,3 +3,5 @@ src/config/nvim/autoload/
 src/config/nvim/plugged/
 src/config/nvim/spell/
 src/config/nvim/shada/
+src/config/fish
+src/config/configstore
