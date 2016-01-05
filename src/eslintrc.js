@@ -9,6 +9,7 @@ module.exports = {
         'eqeqeq': 2,
         'indent': [2, 4],
         'linebreak-style': [2, 'unix'],
+        'no-redeclare': 0,
         'no-underscore-dangle': 0,
         'no-unused-vars': 0,
         'object-curly-spacing': [2, 'always'],
