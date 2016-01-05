@@ -14,11 +14,13 @@ filetype off " required!
 " https://github.com/junegunn/vim-plug
 
 " :PlugUpdate - install or update plugins
+" :PlugClean! - Remove unused directories (bang version will clean without prompt)
 
 call plug#begin('~/.config/nvim/plugged')
 
+" Plug 'Valloric/YouCompleteMe'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
@@ -50,6 +52,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wavded/vim-stylus'
 Plug 'zhaocai/GoldenView.Vim'
+
+" Clojure stuff
+" Plug 'guns/vim-clojure-highlight'
+" Plug 'guns/vim-clojure-static'
+" Plug 'guns/vim-sexp'
+" Plug 'snoe/nvim-parinfer.js'
+" Plug 'tpope/vim-fireplace'
 
 call plug#end()
 
@@ -353,6 +362,12 @@ highlight link xmlEqual cType
 
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
+
+
+" Deoplete
+" ------------------------------------------------------------------------------
+
+let g:deoplete#enable_at_startup = 1
 
 
 " Neomake
