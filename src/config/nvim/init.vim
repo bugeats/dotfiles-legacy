@@ -54,11 +54,11 @@ Plug 'wavded/vim-stylus'
 Plug 'zhaocai/GoldenView.Vim'
 
 " Clojure stuff
-" Plug 'guns/vim-clojure-highlight'
-" Plug 'guns/vim-clojure-static'
-" Plug 'guns/vim-sexp'
-" Plug 'snoe/nvim-parinfer.js'
-" Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
+Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
+Plug 'guns/vim-sexp', { 'for': ['clojure'] }
+Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 
 call plug#end()
 
