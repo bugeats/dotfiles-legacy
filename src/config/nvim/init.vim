@@ -18,7 +18,6 @@ filetype off " required!
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'Valloric/YouCompleteMe'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -48,6 +47,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wavded/vim-stylus'
@@ -104,14 +104,15 @@ set wildignore=*.swp,*.pyc
 
 let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 
+" never try to automatically insert commented new lines
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+
 " Mappings
 " ------------------------------------------------------------------------------
 
-" Weird hack to fix arrow keys in tmux
-map <Esc>[B <Down>
-
 " Pressing ESC will clear any current search term highlighting
-" nnoremap <esc> :noh<return><esc>
+nnoremap <Esc> :noh<return><Esc>
 
 " Pressing 'K' will split the line ('cause 'J' will join it)
 nnoremap K i<CR><Esc>
@@ -163,7 +164,7 @@ nnoremap <Leader>P :CtrlPClearCache<cr>
 " \f global search with Ag
 nnoremap <Leader>f :LAg<space>
 
-" dup a line/selection, with commented version above
+" dup a line/selection, with commented version above <-- this is awesome
 vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
 nnoremap <Leader>c V y gv :TComment<cr> gv<Esc> p
 
@@ -174,6 +175,20 @@ nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
 nnoremap <silent> <Leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
 nnoremap <silent> <Leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" quick tab selection
+nnoremap <Leader>1 :tabn 1<CR>
+nnoremap <Leader>2 :tabn 2<CR>
+nnoremap <Leader>3 :tabn 3<CR>
+nnoremap <Leader>4 :tabn 4<CR>
+nnoremap <Leader>5 :tabn 5<CR>
+nnoremap <Leader>6 :tabn 6<CR>
+nnoremap <Leader>7 :tabn 7<CR>
+nnoremap <Leader>8 :tabn 8<CR>
+nnoremap <Leader>9 :tabn 9<CR>
+
+" Nuke buffers that are not visible
+nnoremap <Leader>n :call NukeUnusedBuffers()<CR>
 
 
 " Movement
@@ -235,6 +250,7 @@ augroup filetypes
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
+    autocmd FileType javascript setlocal equalprg=eslint-pretty
 augroup END
 
 " No git-gutter for taskpaper files
@@ -273,7 +289,7 @@ cabbrev Ack LAg
 
 function! WinMove(key)
   let t:curwin = winnr()
-  exec "wincmd ".a:key
+  exec "wincmd " . a:key
   if (t:curwin == winnr()) " we havent moved
     if (match(a:key,'[jk]')) " were we going up/down
       wincmd v
@@ -297,13 +313,13 @@ nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
 
-" Wipeout()
+" NukeUnusedBuffers()
 " ------------------------------------------------------------------------------
 
-" :call Wipeout()
+" :call NukeUnusedBuffers()
 " remove unused (not visible) buffers
 
-function! Wipeout()
+function! NukeUnusedBuffers()
   " list of *all* buffer numbers
   let l:buffers = range(1, bufnr('$'))
 
@@ -373,35 +389,6 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)"
 
 
-" Javascript
-" ------------------------------------------------------------------------------
-
-" Tomorrow-Night colors
-"   Keyword: orange
-"   Structure: purple
-"   Identifier: red
-"   Operator: aqua
-"   String: green
-"   cType: yellow
-
-" Hacks to force tomorrow night theme colors the way I like
-highlight link javascriptExport Keyword
-highlight link javascriptImport Keyword
-highlight link javascriptReturn Structure
-highlight link javascriptConditional Structure
-highlight link javascriptConditionalElse Structure
-highlight link javaScriptBraces Operator
-highlight link javascriptBraces Operator
-highlight link javascriptParens Operator
-
-" JSX (React)
-highlight link xmlTagName cType
-highlight link xmlTag cType
-highlight link xmlEndTag cType
-highlight link xmlAttrib cType
-highlight link xmlEqual cType
-
-
 " Auto Pairs
 " ------------------------------------------------------------------------------
 
@@ -447,11 +434,12 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-colorscheme Tomorrow-Night
+" currently using a custom color scheme (in progress)
+colorscheme mine
 
-highlight TabLineSel guifg=orange
 
-
+" ------------------------------------------------------------------------------
+"
 " < That's all folks >
 "  ------------------
 "         \   ^__^
