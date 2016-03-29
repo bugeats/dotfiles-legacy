@@ -28,6 +28,7 @@ Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'ervandew/supertab'
 Plug 'groenewege/vim-less'
+Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
 Plug 'jiangmiao/auto-pairs'
@@ -56,15 +57,14 @@ Plug 'zhaocai/GoldenView.Vim'
 " Clojure stuff
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
-Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+" Plug 'guns/vim-sexp', { 'for': ['clojure'] }
+" Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
+" Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 
 call plug#end()
 
 
-" Preferences / Defaults
-" ------------------------------------------------------------------------------
+" Preferences / Defaults -------------------------------------------------------
 
 syntax on
 
@@ -108,11 +108,7 @@ let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
-" Mappings
-" ------------------------------------------------------------------------------
-
-" Pressing ESC will clear any current search term highlighting
-nnoremap <Esc> :noh<return><Esc>
+" Mappings ---------------------------------------------------------------------
 
 " Pressing 'K' will split the line ('cause 'J' will join it)
 nnoremap K i<CR><Esc>
@@ -140,8 +136,8 @@ imap <S-BS> <C-W>
 inoremap <S-BS> <C-W>
 set backspace=indent,eol,start
 
-" Leader Keys
-" ------------------------------------------------------------------------------
+
+" Leader Keys ------------------------------------------------------------------
 
 " use spacebar for leader!
 let mapleader = "\<Space>"
@@ -191,16 +187,14 @@ nnoremap <Leader>9 :tabn 9<CR>
 nnoremap <Leader>n :call NukeUnusedBuffers()<CR>
 
 
-" Movement
-" ------------------------------------------------------------------------------
+" Movement ---------------------------------------------------------------------
 
 " j/k moves even for a wrapping line
 nmap j gj
 nmap k gk
 
 
-" Navigation
-" ------------------------------------------------------------------------------
+" Navigation -------------------------------------------------------------------
 
 " Tab nav shortcuts
 nnoremap td  :tabclose<CR>
@@ -223,8 +217,7 @@ nnoremap t8  :tabn 8<CR>
 nnoremap t9  :tabn 9<CR>
 
 
-" Filetypes
-" ------------------------------------------------------------------------------
+" Filetypes --------------------------------------------------------------------
 
 " Show current file type:
 "   :set filetype?
@@ -250,31 +243,28 @@ augroup filetypes
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal equalprg=eslint-pretty
+    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty
 augroup END
 
 " No git-gutter for taskpaper files
 autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
 
-" Fuzzy Search
-" ------------------------------------------------------------------------------
+" Fuzzy Search -----------------------------------------------------------------
 
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|build$\|test$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 
-" NerdTree
-" ------------------------------------------------------------------------------
+" NerdTree ---------------------------------------------------------------------
 
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.DS_Store$']
 
 
-" Ag / Project Search
-" ------------------------------------------------------------------------------
+" Ag / Project Search ----------------------------------------------------------
 
 let g:ag_prg = "/usr/local/bin/ag --column"
 
@@ -284,8 +274,7 @@ let g:ag_highlight = 1
 cabbrev Ack LAg
 
 
-" Window Movement
-" ------------------------------------------------------------------------------
+" Window Movement --------------------------------------------------------------
 
 function! WinMove(key)
   let t:curwin = winnr()
@@ -313,8 +302,15 @@ nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
 
-" NukeUnusedBuffers()
-" ------------------------------------------------------------------------------
+" GoldenView -------------------------------------------------------------------
+
+let g:goldenview__enable_at_startup = 1
+
+" dunno why GoldenView stopped init'ing at startup, but this fixes it
+autocmd VimEnter * EnableGoldenViewAutoResize
+
+
+" NukeUnusedBuffers() ----------------------------------------------------------
 
 " :call NukeUnusedBuffers()
 " remove unused (not visible) buffers
@@ -353,17 +349,7 @@ function! NukeUnusedBuffers()
 endfunction
 
 
-" CoffeeScript
-" ------------------------------------------------------------------------------
-
-let coffee_no_trailing_space_error = 1
-
-" .ojc files are coffeescript
-au BufRead,BufNewFile *.ojc set filetype=php
-
-
-" tComment
-" ------------------------------------------------------------------------------
+" tComment ---------------------------------------------------------------------
 
 call tcomment#DefineType('python', '# %s')
 call tcomment#DefineType('coffee', '# %s')
@@ -372,15 +358,13 @@ call tcomment#DefineType('slim', '/ %s')
 call tcomment#DefineType('cucumber', '# %s')
 
 
-" GitGutter
-" ------------------------------------------------------------------------------
+" GitGutter --------------------------------------------------------------------
 
 " Back off there gitgutter, and stop slowing down tab rendering
 let g:gitgutter_eager = 0
 
 
-" EasyAlign
-" ------------------------------------------------------------------------------
+" EasyAlign --------------------------------------------------------------------
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -389,29 +373,32 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)"
 
 
-" Auto Pairs
-" ------------------------------------------------------------------------------
+" Auto Pairs -------------------------------------------------------------------
 
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 
-" Deoplete
-" ------------------------------------------------------------------------------
+" Deoplete ---------------------------------------------------------------------
 
 let g:deoplete#enable_at_startup = 1
 
 
-" Neomake
-" ------------------------------------------------------------------------------
+" Neomake ----------------------------------------------------------------------
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 
 autocmd! BufWritePost * Neomake
 
 
-" Neovim Terminal Mode
-" ------------------------------------------------------------------------------
+" Supertab ---------------------------------------------------------------------
+
+" Fix deoplete menu order
+" https://github.com/ervandew/supertab#frequently-asked-questions
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+" Neovim Terminal Mode ---------------------------------------------------------
 
 if has('nvim')
     " backtick sends true escape
@@ -422,8 +409,7 @@ if has('nvim')
 endif
 
 
-" Color Scheme
-" ------------------------------------------------------------------------------
+" Color Scheme -----------------------------------------------------------------
 
 " Show syntax highlighting groups for word under cursor (ctrl-s)
 nmap <C-S> :call <SID>SynStack()<CR>
@@ -438,8 +424,6 @@ endfunc
 colorscheme mine
 
 
-" ------------------------------------------------------------------------------
-"
 " < That's all folks >
 "  ------------------
 "         \   ^__^
