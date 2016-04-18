@@ -25,7 +25,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'davidoc/taskpaper.vim'
-Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-pug'
 Plug 'ervandew/supertab'
 Plug 'groenewege/vim-less'
 Plug 'henrik/vim-indexed-search'
@@ -233,6 +233,7 @@ augroup filetypes
     autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
     autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype pug        setlocal ts=2 sw=2 expandtab
     autocmd Filetype less       setlocal ts=2 sw=2 expandtab
     autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype ruby       setlocal ts=2 sw=2 expandtab

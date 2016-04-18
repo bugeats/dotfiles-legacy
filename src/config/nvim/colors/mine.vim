@@ -182,6 +182,7 @@ call s:linkGroup('RedshiftControl', [
     \"stylusVariableAssignment",
     \"vimContinue",
     \"vimParenSep",
+    \"pugAttributesDelimiter",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -202,6 +203,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"clojureCond",
     \"clojureFunc",
     \"clojureMacro",
+    \"pugTag",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
