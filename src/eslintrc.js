@@ -24,7 +24,8 @@ module.exports = {
         'strict': 0
     },
     'env': {
-        'node': true
+        'node': true,
+        'es6': true
     },
     'extends': 'eslint:recommended'
 };
