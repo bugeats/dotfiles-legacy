@@ -14,7 +14,8 @@ export PS1="\w\$(parse_git_branch) $ "
 # Aliases
 # ------------------------------------------------------------------------------
 
-alias vd='git diff | mvim -'
+alias vd='git diff | nvim -'
+alias less='less -r'
 
 # ----
 
