@@ -186,6 +186,12 @@ nnoremap <Leader>9 :tabn 9<CR>
 " Nuke buffers that are not visible
 nnoremap <Leader>n :call NukeUnusedBuffers()<CR>
 
+" \ts skip tests
+nnoremap <Leader>ts :%s/test(/test.skip(/g<CR>
+
+" \tu unskip tests
+nnoremap <Leader>tu :%s/test.skip(/test(/g<CR>
+
 
 " Movement ---------------------------------------------------------------------
 
@@ -410,6 +416,10 @@ if has('nvim')
 endif
 
 
+" Neoterm ----------------------------------------------------------------------
+
+let g:neoterm_shell = "bash"
+
 " Color Scheme -----------------------------------------------------------------
 
 " Show syntax highlighting groups for word under cursor (ctrl-s)
@@ -420,6 +430,9 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" enable true color support
+set termguicolors
 
 " currently using a custom color scheme (in progress)
 colorscheme mine
