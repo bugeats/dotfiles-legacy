@@ -136,6 +136,9 @@ imap <S-BS> <C-W>
 inoremap <S-BS> <C-W>
 set backspace=indent,eol,start
 
+" Use 'M' to jump to a mark and center viewport
+map <expr> M printf('`%c zz', getchar())
+
 
 " Leader Keys ------------------------------------------------------------------
 
@@ -150,6 +153,9 @@ nnoremap <Leader>w :w<CR>
 
 " \d show/hide NerdTree
 nnoremap <Leader>d :NERDTreeToggle<cr>
+
+" \l to set local directory to current file path
+nnoremap <Leader>l :lcd %:p:h<cr>
 
 " \p to show fuzzy search
 nnoremap <Leader>p :CtrlP<cr>
@@ -221,6 +227,10 @@ nnoremap t6  :tabn 6<CR>
 nnoremap t7  :tabn 7<CR>
 nnoremap t8  :tabn 8<CR>
 nnoremap t9  :tabn 9<CR>
+
+" tf 'tab floor' move the current tab all the way left
+nnoremap tf :tabm 0<CR>
+
 
 
 " Filetypes --------------------------------------------------------------------

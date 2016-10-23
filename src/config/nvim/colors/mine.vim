@@ -17,42 +17,42 @@ au TermOpen * setlocal nolist
 
 let s:p = {}
 
-let s:p.a1 = "#d9b28e"
-let s:p.b1 = "#93c694"
-let s:p.g1 = "#bbbd83"
-let s:p.d1 = "#babaad"
-let s:p.t1 = "#71c9b4"
-let s:p.k1 = "#89c1df"
-let s:p.a2 = "#a67f55"
-let s:p.b2 = "#5b935c"
-let s:p.g2 = "#888a46"
-let s:p.d2 = "#86877e"
-let s:p.t2 = "#1e9781"
-let s:p.k2 = "#488fad"
-let s:p.a3 = "#665b52"
-let s:p.b3 = "#536054"
-let s:p.g3 = "#5d5e50"
-let s:p.d3 = "#5d5d58"
-let s:p.t3 = "#4d615c"
-let s:p.k3 = "#525f67"
-let s:p.a4 = "#433e3b"
-let s:p.b4 = "#3b413b"
-let s:p.g4 = "#3f4039"
-let s:p.d4 = "#3f3f3c"
-let s:p.t4 = "#38413f"
-let s:p.k4 = "#3a4044"
-let s:p.a5 = "#302d2b"
-let s:p.b5 = "#2c2e2c"
-let s:p.g5 = "#2e2e2b"
-let s:p.d5 = "#2e2e2b"
-let s:p.t5 = "#2a2e2d"
-let s:p.k5 = "#2b2e30"
-let s:p.a6 = "#292726"
-let s:p.b6 = "#262826"
-let s:p.g6 = "#282826"
-let s:p.d6 = "#282826"
-let s:p.t6 = "#262828"
-let s:p.k6 = "#262829"
+let s:p.a1 = "#d8af8e"
+let s:p.b1 = "#94c390"
+let s:p.g1 = "#bbba81"
+let s:p.d1 = "#b8b8aa"
+let s:p.t1 = "#71c6af"
+let s:p.k1 = "#83bfda"
+let s:p.a2 = "#a57b55"
+let s:p.b2 = "#5d9058"
+let s:p.g2 = "#888744"
+let s:p.d2 = "#84847c"
+let s:p.t2 = "#22947b"
+let s:p.k2 = "#418da9"
+let s:p.a3 = "#645851"
+let s:p.b3 = "#525e51"
+let s:p.g3 = "#5c5b4e"
+let s:p.d3 = "#5b5b56"
+let s:p.t3 = "#4b5f59"
+let s:p.k3 = "#4f5d64"
+let s:p.a4 = "#413c39"
+let s:p.b4 = "#393e39"
+let s:p.g4 = "#3d3d37"
+let s:p.d4 = "#3d3d3a"
+let s:p.t4 = "#363f3c"
+let s:p.k4 = "#383e41"
+let s:p.a5 = "#2d2b29"
+let s:p.b5 = "#2a2c29"
+let s:p.g5 = "#2c2c29"
+let s:p.d5 = "#2c2c29"
+let s:p.t5 = "#282c2b"
+let s:p.k5 = "#292c2d"
+let s:p.a6 = "#272524"
+let s:p.b6 = "#242624"
+let s:p.g6 = "#262624"
+let s:p.d6 = "#262624"
+let s:p.t6 = "#242625"
+let s:p.k6 = "#242627"
 
 " call s:HL("BlingHilight", s:p.bg, s:p.qq)
 
@@ -152,11 +152,29 @@ call s:linkGroup('RedshiftNormal', [
     \"VisualNOS",
     \"WarningMsg",
     \"WildMenu",
-    \"String",
-    \"javascriptRegexpString",
-    \"javascriptMethod",
-    \"javascriptHeadersMethod",
     \"clojureKeyword",
+    \"javascriptArrayMethod",
+    \"javascriptBOMNavigatorProp",
+    \"javascriptBlock",
+    \"javascriptConsoleMethod",
+    \"javascriptDOMDocMethod",
+    \"javascriptDOMElemProp",
+    \"javascriptDOMStorageProp",
+    \"javascriptDOMEventProp",
+    \"javascriptES6SetMethod",
+    \"javascriptFileReaderProp",
+    \"javascriptFunctionMethod",
+    \"javascriptHeadersMethod",
+    \"javascriptJSONStaticMethod",
+    \"javascriptMethod",
+    \"javascriptStringMethod",
+    \"javascriptPromiseStaticMethod",
+    \"javascriptPromiseMethod",
+    \"javascriptProp",
+    \"javascriptRequestProp",
+    \"javascriptResponseProp",
+    \"javascriptRegexpString",
+    \"javascriptReflectMethod",
 \])
 
 call s:linkGroup('RedshiftComment', [
@@ -190,25 +208,31 @@ call s:linkGroup('RedshiftControlActive', [
 \])
 
 call s:linkGroup('RedshiftKeyword', [
-    \"Keyword",
-    \"javascriptReturn",
-    \"javascriptVariable",
-    \"javascriptOperator",
-    \"javascriptExceptions",
     \"Boolean",
-    \"vimLet",
-    \"vimCommand",
+    \"Keyword",
+    \"clojureCond",
     \"clojureConstant",
     \"clojureDefine",
-    \"clojureCond",
     \"clojureFunc",
     \"clojureMacro",
+    \"javascriptExceptions",
+    \"javascriptIdentifier",
+    \"javascriptOperator",
+    \"javascriptReturn",
+    \"javascriptVariable",
+    \"javascriptTry",
+    \"javascriptConditional",
+    \"javascriptConditionalElse",
     \"pugTag",
+    \"vimCommand",
+    \"vimLet",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
     \"String",
+    \"javascriptPropertyNameString",
     \"javascriptRegexpString",
+    \"javascriptString",
     \"jsxRegion",
 \])
 
