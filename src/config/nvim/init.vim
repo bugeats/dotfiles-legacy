@@ -31,7 +31,7 @@ Plug 'groenewege/vim-less'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
@@ -40,11 +40,13 @@ Plug 'kien/ctrlp.vim'
 Plug 'lfilho/cosco.vim'
 Plug 'mkitt/tabline.vim'
 Plug 'mxw/vim-jsx'
+Plug 'neovim/node-host'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -57,9 +59,10 @@ Plug 'zhaocai/GoldenView.Vim'
 " Clojure stuff
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
-" Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-" Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
-" Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
+Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'venantius/vim-eastwood', { 'for': ['clojure'] }
 
 call plug#end()
 
@@ -240,6 +243,8 @@ nnoremap tf :tabm 0<CR>
 
 augroup filetypes
     autocmd!
+    autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
+    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype coffee     setlocal ts=2 sw=2 expandtab
@@ -249,9 +254,9 @@ augroup filetypes
     autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
     autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype pug        setlocal ts=2 sw=2 expandtab
     autocmd Filetype less       setlocal ts=2 sw=2 expandtab
     autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype pug        setlocal ts=2 sw=2 expandtab
     autocmd Filetype ruby       setlocal ts=2 sw=2 expandtab
     autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
     autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
@@ -260,7 +265,6 @@ augroup filetypes
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty
 augroup END
 
 " No git-gutter for taskpaper files
@@ -448,6 +452,13 @@ set termguicolors
 colorscheme mine
 
 
+" Parinfer ---------------------------------------------------------------------
+
+let g:parinfer_preview_cursor_scope = 1
+
+
+" ------------------------------------------------------------------------------
+"
 " < That's all folks >
 "  ------------------
 "         \   ^__^
