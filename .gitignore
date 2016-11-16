@@ -5,3 +5,5 @@ src/config/nvim/spell/
 src/config/nvim/shada/
 src/config/fish
 src/config/configstore
+src/config/gtk-2.0
+src/config/nyaovim

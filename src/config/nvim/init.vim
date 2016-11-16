@@ -61,7 +61,11 @@ Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
 Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
 Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
+Plug 'tpope/vim-dispatch', { 'for': ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'tpope/vim-projectionist', { 'for': ['clojure'] }
+Plug 'tpope/vim-salve', { 'for': ['clojure'] }
+Plug 'venantius/vim-cljfmt', { 'for': ['clojure'] }
 Plug 'venantius/vim-eastwood', { 'for': ['clojure'] }
 
 call plug#end()
@@ -76,7 +80,8 @@ set autoread
 set background=dark
 set backupdir=./.backup,.,/tmp
 set clipboard=unnamed         " support OS X clipboard
-set cursorline
+set cursorline                " highlighted cursor row
+set cursorcolumn              " highlighted cursor column
 set expandtab                 " insert spaces instead when pressing <tab>
 set formatoptions-=cro        " no annoying comment autoformat foo
 set guifont=DroidSansMono:h14 " This is the best programming font. I declare it.
@@ -167,7 +172,7 @@ nnoremap <Leader>p :CtrlP<cr>
 nnoremap <Leader>P :CtrlPClearCache<cr>
 
 " \f global search with Ag
-nnoremap <Leader>f :LAg<space>
+nnoremap <Leader>f :Ag<space>
 
 " dup a line/selection, with commented version above <-- this is awesome
 vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
@@ -200,6 +205,17 @@ nnoremap <Leader>ts :%s/test(/test.skip(/g<CR>
 
 " \tu unskip tests
 nnoremap <Leader>tu :%s/test.skip(/test(/g<CR>
+
+" \r to reload REPL and show last REPL message (Clojure only right now)
+nnoremap <Leader>r :Require<CR>
+
+" \b to open web browser
+nnoremap <Leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
+
+" \m to 'make' save changes / reload REPL, switch to browser
+autocmd FileType clojure    nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
 
 
 " Movement ---------------------------------------------------------------------

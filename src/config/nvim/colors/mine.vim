@@ -120,7 +120,6 @@ call s:linkGroup('RedshiftNormal', [
     \"ColorColumn",
     \"Conceal",
     \"Constant",
-    \"CursorColumn",
     \"CursorIM",
     \"DiffAdd",
     \"DiffChange",
@@ -202,6 +201,7 @@ call s:linkGroup('RedshiftControl', [
     \"vimContinue",
     \"vimParenSep",
     \"pugAttributesDelimiter",
+    \"yamlKeyValueDelimiter",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -235,6 +235,7 @@ call s:linkGroup('RedshiftLiteral', [
     \"javascriptRegexpString",
     \"javascriptString",
     \"jsxRegion",
+    \"yamlPlainScalar",
 \])
 
 call s:linkGroup('RedshiftGhost', [
@@ -250,6 +251,7 @@ call s:linkGroup('RedshiftGhostActive', [
 
 call s:linkGroup('RedshiftLocated', [
     \"CursorLine",
+    \"CursorColumn",
 \])
 
 call s:linkGroup('RedshiftHighlighted', [
