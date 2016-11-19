@@ -19,7 +19,7 @@ filetype off " required!
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
@@ -31,6 +31,7 @@ Plug 'groenewege/vim-less'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jakar/vim-json'
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
@@ -59,7 +60,7 @@ Plug 'zhaocai/GoldenView.Vim'
 " Clojure stuff
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
-Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'] }
+Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
 Plug 'tpope/vim-dispatch', { 'for': ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
