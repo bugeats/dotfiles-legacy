@@ -11,8 +11,6 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     markdown
-     javascript
      auto-completion
      better-defaults
      clojure
@@ -20,8 +18,11 @@
      git
      helm
      javascript
+     javascript
+     markdown
      markdown
      react
+     redshift
      syntax-checking
      theming
      version-control
@@ -30,10 +31,7 @@
             shell-default-shell 'ansi-term
             shell-default-position 'right)
      )
-   dotspacemacs-additional-packages
-   '(
-     paren-face
-     )
+   dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(
