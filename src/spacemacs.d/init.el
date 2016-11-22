@@ -52,6 +52,7 @@
    dotspacemacs-startup-banner 'nil
    dotspacemacs-display-default-layout t
    dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-highlight-delimiters nil
 
    ;; ---- generated defaults below ----
 
@@ -102,7 +103,6 @@
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis nil
-   dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
