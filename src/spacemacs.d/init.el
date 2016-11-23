@@ -44,7 +44,9 @@
 
 (defun dotspacemacs/init ()
   "
-  Initialization function. This function is called at the very startup of Spacemacs initialization before layers configuration. You should not put any user code in there besides modifying the variable values.
+  Initialization function.
+  This function is called at the very startup of Spacemacs initialization before layers configuration.
+  You should not put any user code in there besides modifying the variable values.
   "
   (setq-default
 
@@ -134,7 +136,9 @@
   "
   (setq git-gutter-fr+-side 'left-fringe) ; git gutter marks near the line numbers
   (setq powerline-default-separator 'nil)
+
   (setq neo-theme 'nerd)
+  (setq neo-vc-integration '(face char))
 
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t))) ; disable text folding everwhere
 
