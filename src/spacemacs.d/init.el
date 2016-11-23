@@ -138,7 +138,8 @@
   (setq powerline-default-separator 'nil)
 
   (setq neo-theme 'nerd)
-  (setq neo-vc-integration '(face char))
+  (setq neo-vc-integration '(face char)) ; show git status
+  (setq neo-smart-open t) ; Every time when the neotree window is opened, let it find current file and jump to node.
 
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t))) ; disable text folding everwhere
 
