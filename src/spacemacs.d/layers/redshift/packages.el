@@ -4,7 +4,7 @@
 ;; URL: https://github.com/bugeats
 
 (defconst redshift-packages
-  '(paren-face)
+  '(paren-face hiwin)
   )
 
 (defun redshift/init-paren-face ()
@@ -82,3 +82,17 @@
 ;;                                                 '(term :background p-a5)
 ;;                                                 '(font-lock-constant-face :foreground nil :underline nil))))
 ;;   )
+
+(defun redshift/init-hiwin ()
+  (use-package hiwin
+    :config
+
+    (hiwin-activate)
+
+    ;; Yay this works
+    (custom-set-faces
+     ;; hiwin-face is windows that don't have focus
+     '(hiwin-face ((t (:background "#3B4048"))) t)
+     )
+  )
+)
