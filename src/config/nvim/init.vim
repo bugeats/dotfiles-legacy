@@ -85,7 +85,7 @@ set cursorline                " highlighted cursor row
 set cursorcolumn              " highlighted cursor column
 set expandtab                 " insert spaces instead when pressing <tab>
 set formatoptions-=cro        " no annoying comment autoformat foo
-set guifont=DroidSansMono:h14 " This is the best programming font. I declare it.
+set guifont=DejaVuSansMono:h14 " This is the best programming font. I declare it.
 set guitablabel=%M%t\ (%F)    " minimal GUI tab label
 set hidden                    " Don't need to see abandoned buffers
 set hlsearch
