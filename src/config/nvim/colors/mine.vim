@@ -15,6 +15,10 @@ au TermOpen * setlocal nolist
 
 " Palette ----------------------------------------------------------------------
 
+
+
+" Palette ----------------------------------------------------------------------
+
 let s:p = {}
 
 let s:p.a1 = "#d8af8e"
@@ -53,8 +57,6 @@ let s:p.g6 = "#262624"
 let s:p.d6 = "#262624"
 let s:p.t6 = "#242625"
 let s:p.k6 = "#242627"
-
-" call s:HL("BlingHilight", s:p.bg, s:p.qq)
 
 " Functions --------------------------------------------------------------------
 
@@ -99,7 +101,7 @@ call s:smartHi('RedshiftControlActive',     s:p.a1, '')
 call s:smartHi('RedshiftKeyword',           s:p.b1, '')
 call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftGhost',             s:p.a3, '')
-call s:smartHi('RedshiftGhostActive',       s:p.g2, s:p.a5)
+call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
 call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
@@ -179,6 +181,13 @@ call s:linkGroup('RedshiftNormal', [
 
 call s:linkGroup('RedshiftComment', [
     \"Comment",
+    \"javascriptDocComment",
+    \"javascriptDocNamedDocParamType",
+    \"javascriptDocNotation",
+    \"javascriptDocParamName",
+    \"javascriptDocParamType",
+    \"javascriptDocNamedParamType",
+    \"javascriptDocTags",
     \"vimLineComment",
 \])
 
@@ -192,15 +201,20 @@ call s:linkGroup('RedshiftControl', [
     \"javascriptEndColons",
     \"javascriptObjectLabelColon",
     \"javascriptOpSymbol",
+    \"javascriptParenTagLiteral",
     \"javascriptParens",
     \"javascriptProperty",
     \"javascriptTemplateSB",
     \"jsonBraces",
+    \"jsonNoise",
+    \"markdownHeadingDelimiter",
+    \"markdownListMarker",
+    \"markdownRule",
+    \"pugAttributesDelimiter",
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"vimContinue",
     \"vimParenSep",
-    \"pugAttributesDelimiter",
     \"yamlKeyValueDelimiter",
 \])
 
@@ -235,14 +249,16 @@ call s:linkGroup('RedshiftLiteral', [
     \"javascriptRegexpString",
     \"javascriptString",
     \"jsxRegion",
+    \"markdownCodeBlock",
     \"yamlPlainScalar",
 \])
 
 call s:linkGroup('RedshiftGhost', [
     \"Conceal",
+    \"EndOfBuffer",
+    \"LineNr",
     \"NonText",
     \"SpecialKey",
-    \"LineNr",
 \])
 
 call s:linkGroup('RedshiftGhostActive', [

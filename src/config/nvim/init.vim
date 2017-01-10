@@ -26,11 +26,12 @@ Plug 'benekastah/neomake'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'groenewege/vim-less'
+Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
-Plug 'jakar/vim-json'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
@@ -82,7 +83,6 @@ set background=dark
 set backupdir=./.backup,.,/tmp
 set clipboard=unnamed         " support OS X clipboard
 set cursorline                " highlighted cursor row
-set cursorcolumn              " highlighted cursor column
 set expandtab                 " insert spaces instead when pressing <tab>
 set formatoptions-=cro        " no annoying comment autoformat foo
 set guifont=DejaVuSansMono:h14 " This is the best programming font. I declare it.
@@ -154,11 +154,15 @@ map <expr> M printf('`%c zz', getchar())
 " use spacebar for leader!
 let mapleader = "\<Space>"
 
+" use leader guide
+nnoremap <Leader> :<C-U>LeaderGuide ' '<CR>
+nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
+
 " \q ever so slightly faster quit command
 nnoremap <Leader>q :q<CR>
 
-" \w ever so slightly faster write command
-nnoremap <Leader>w :w<CR>
+" \fs ever so slightly faster write command
+nnoremap <Leader>fs :w<CR>
 
 " \d show/hide NerdTree
 nnoremap <Leader>d :NERDTreeToggle<cr>
@@ -218,6 +222,19 @@ autocmd FileType clojure    nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applica
 autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
 autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
 
+nnoremap <Leader>wj :wincmd j<CR>
+nnoremap <Leader>wk :wincmd k<CR>
+nnoremap <Leader>wl :wincmd l<CR>
+nnoremap <Leader>wv :wincmd v<CR>
+nnoremap <Leader>ws :wincmd s<CR>
+nnoremap <Leader>wq :wincmd q<CR>
+nnoremap <Leader>wh :wincmd h<CR>
+
+" Leader Guide -----------------------------------------------------------------
+
+let g:lmap =  {}
+let g:lmap.f = { 'name' : 'File Menu' }
+let g:lmap.w = { 'name' : 'Windows' }
 
 " Movement ---------------------------------------------------------------------
 
@@ -469,9 +486,10 @@ set termguicolors
 colorscheme mine
 
 
-" Parinfer ---------------------------------------------------------------------
+" Clojure Stuff ----------------------------------------------------------------
 
 let g:parinfer_preview_cursor_scope = 1
+autocmd FileType clojure     set cursorcolumn
 
 
 " ------------------------------------------------------------------------------
