@@ -22,6 +22,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
 Plug 'benekastah/neomake'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'davidoc/taskpaper.vim'
@@ -158,11 +159,48 @@ let mapleader = "\<Space>"
 nnoremap <Leader> :<C-U>LeaderGuide ' '<CR>
 nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
 
+" File Tasks ---------------------------
+
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>fed :e $MYVIMRC<CR>
+
+" Window Tasks -------------------------
+
+nnoremap <Leader>wj :wincmd j<CR>
+nnoremap <Leader>wk :wincmd k<CR>
+nnoremap <Leader>wl :wincmd l<CR>
+nnoremap <Leader>wv :wincmd v<CR>
+nnoremap <Leader>ws :wincmd s<CR>
+nnoremap <Leader>wq :wincmd q<CR>
+nnoremap <Leader>wh :wincmd h<CR>
+
+" (w)indow-(d)elete
+nnoremap <Leader>wd :wincmd q<CR>
+" (w)indow-(m)aximize
+nnoremap <Leader>wm :only<CR>
+
+" Tab Tasks ----------------------------
+
+nnoremap <Leader>1 :tabn 1<CR>
+nnoremap <Leader>2 :tabn 2<CR>
+nnoremap <Leader>3 :tabn 3<CR>
+nnoremap <Leader>4 :tabn 4<CR>
+nnoremap <Leader>5 :tabn 5<CR>
+nnoremap <Leader>6 :tabn 6<CR>
+nnoremap <Leader>7 :tabn 7<CR>
+nnoremap <Leader>8 :tabn 8<CR>
+nnoremap <Leader>9 :tabn 9<CR>
+
+" Make Tasks ---------------------------
+
+" \m to 'make' save changes / reload REPL, switch to browser
+autocmd FileType clojure    nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+
+
 " \q ever so slightly faster quit command
 nnoremap <Leader>q :q<CR>
-
-" \fs ever so slightly faster write command
-nnoremap <Leader>fs :w<CR>
 
 " \d show/hide NerdTree
 nnoremap <Leader>d :NERDTreeToggle<cr>
@@ -176,8 +214,8 @@ nnoremap <Leader>p :CtrlP<cr>
 " \P clear fuzzy search cache
 nnoremap <Leader>P :CtrlPClearCache<cr>
 
-" \f global search with Ag
-nnoremap <Leader>f :Ag<space>
+" global search with Ag
+nnoremap <Leader>/ :Ag<space>
 
 " dup a line/selection, with commented version above <-- this is awesome
 vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
@@ -190,17 +228,6 @@ nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
 nnoremap <silent> <Leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
 nnoremap <silent> <Leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" quick tab selection
-nnoremap <Leader>1 :tabn 1<CR>
-nnoremap <Leader>2 :tabn 2<CR>
-nnoremap <Leader>3 :tabn 3<CR>
-nnoremap <Leader>4 :tabn 4<CR>
-nnoremap <Leader>5 :tabn 5<CR>
-nnoremap <Leader>6 :tabn 6<CR>
-nnoremap <Leader>7 :tabn 7<CR>
-nnoremap <Leader>8 :tabn 8<CR>
-nnoremap <Leader>9 :tabn 9<CR>
 
 " Nuke buffers that are not visible
 nnoremap <Leader>n :call NukeUnusedBuffers()<CR>
@@ -216,19 +243,6 @@ nnoremap <Leader>r :Require<CR>
 
 " \b to open web browser
 nnoremap <Leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
-
-" \m to 'make' save changes / reload REPL, switch to browser
-autocmd FileType clojure    nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-
-nnoremap <Leader>wj :wincmd j<CR>
-nnoremap <Leader>wk :wincmd k<CR>
-nnoremap <Leader>wl :wincmd l<CR>
-nnoremap <Leader>wv :wincmd v<CR>
-nnoremap <Leader>ws :wincmd s<CR>
-nnoremap <Leader>wq :wincmd q<CR>
-nnoremap <Leader>wh :wincmd h<CR>
 
 " Leader Guide -----------------------------------------------------------------
 
@@ -295,7 +309,7 @@ augroup filetypes
     autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
     autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
     autocmd Filetype stylus     setlocal ts=2 sw=2 expandtab
-    autocmd Filetype taskpaper  setlocal nolist
+    autocmd Filetype taskpaper  setlocal ts=2 sw=2 expandtab nolist
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
@@ -304,6 +318,7 @@ augroup END
 " No git-gutter for taskpaper files
 autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
+let g:vim_json_syntax_conceal = 0
 
 " Fuzzy Search -----------------------------------------------------------------
 
