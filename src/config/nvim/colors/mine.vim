@@ -243,6 +243,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptExceptions",
     \"javascriptExport",
     \"javascriptIdentifier",
+    \"javascriptImport",
     \"javascriptOperator",
     \"javascriptReturn",
     \"javascriptSwitch",

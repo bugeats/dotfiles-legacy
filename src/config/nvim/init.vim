@@ -38,7 +38,6 @@ Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
-Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'lfilho/cosco.vim'
 Plug 'mkitt/tabline.vim'
@@ -48,6 +47,7 @@ Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
+Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'tomtom/tcomment_vim'
@@ -162,15 +162,19 @@ nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
 " File Tasks ---------------------------
 
 nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>fed :e $MYVIMRC<CR>
+nnoremap <Leader>fed :e ~/Desktop<CR>
+nnoremap <Leader>fev :e $MYVIMRC<CR>
+nnoremap <Leader>fec :e ~/.config/nvim/colors/mine.vim<CR>
+nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
+nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
 
 " Window Tasks -------------------------
 
 nnoremap <Leader>wj :wincmd j<CR>
 nnoremap <Leader>wk :wincmd k<CR>
 nnoremap <Leader>wl :wincmd l<CR>
-nnoremap <Leader>wv :wincmd v<CR>
-nnoremap <Leader>ws :wincmd s<CR>
+nnoremap <Leader>wv :wincmd v<CR> :wincmd l<CR>
+nnoremap <Leader>ws :wincmd s<CR> :wincmd j<CR>
 nnoremap <Leader>wq :wincmd q<CR>
 nnoremap <Leader>wh :wincmd h<CR>
 
@@ -190,6 +194,28 @@ nnoremap <Leader>6 :tabn 6<CR>
 nnoremap <Leader>7 :tabn 7<CR>
 nnoremap <Leader>8 :tabn 8<CR>
 nnoremap <Leader>9 :tabn 9<CR>
+
+nnoremap <Leader>td  :tabclose<CR>
+nnoremap <Leader>th  :tabnext<CR>
+nnoremap <Leader>tj  :tabnext<CR>
+nnoremap <Leader>tk  :tabprev<CR>
+nnoremap <Leader>tl  :tabprev<CR>
+nnoremap <Leader>tm  :tabm<Space>
+nnoremap <Leader>tn  :tabnew<CR>
+nnoremap <Leader>tt  :tabedit<Space>
+" tf 'tab floor' move the current tab all the way left
+nnoremap <Leader>tf :tabm 0<CR>
+
+nnoremap <Leader>t1  :tabn 1<CR>
+nnoremap <Leader>t2  :tabn 2<CR>
+nnoremap <Leader>t3  :tabn 3<CR>
+nnoremap <Leader>t4  :tabn 4<CR>
+nnoremap <Leader>t5  :tabn 5<CR>
+nnoremap <Leader>t6  :tabn 6<CR>
+nnoremap <Leader>t7  :tabn 7<CR>
+nnoremap <Leader>t8  :tabn 8<CR>
+nnoremap <Leader>t9  :tabn 9<CR>
+
 
 " Make Tasks ---------------------------
 
@@ -257,33 +283,6 @@ nmap j gj
 nmap k gk
 
 
-" Navigation -------------------------------------------------------------------
-
-" Tab nav shortcuts
-nnoremap td  :tabclose<CR>
-nnoremap th  :tabnext<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tabprev<CR>
-nnoremap tm  :tabm<Space>
-nnoremap tn  :tabnew<CR>
-nnoremap tt  :tabedit<Space>
-
-nnoremap t1  :tabn 1<CR>
-nnoremap t2  :tabn 2<CR>
-nnoremap t3  :tabn 3<CR>
-nnoremap t4  :tabn 4<CR>
-nnoremap t5  :tabn 5<CR>
-nnoremap t6  :tabn 6<CR>
-nnoremap t7  :tabn 7<CR>
-nnoremap t8  :tabn 8<CR>
-nnoremap t9  :tabn 9<CR>
-
-" tf 'tab floor' move the current tab all the way left
-nnoremap tf :tabm 0<CR>
-
-
-
 " Filetypes --------------------------------------------------------------------
 
 " Show current file type:
@@ -295,7 +294,6 @@ augroup filetypes
     autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
-    autocmd Filetype coffee     setlocal ts=2 sw=2 expandtab
     autocmd Filetype css        setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
     autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
@@ -345,25 +343,6 @@ cabbrev Ack LAg
 
 
 " Window Movement --------------------------------------------------------------
-
-function! WinMove(key)
-  let t:curwin = winnr()
-  exec "wincmd " . a:key
-  if (t:curwin == winnr()) " we havent moved
-    if (match(a:key,'[jk]')) " were we going up/down
-      wincmd v
-    else
-      wincmd s
-    endif
-    exec "wincmd ".a:key
-  endif
-endfunction
-
-" Window movement by CTRL prefix
-map <C-h> :call WinMove('h')<cr>
-map <C-k> :call WinMove('k')<cr>
-map <C-l> :call WinMove('l')<cr>
-map <C-j> :call WinMove('j')<cr>
 
 " Resize window (arrow keys)
 nmap <left>  :3wincmd <<cr>
@@ -422,7 +401,6 @@ endfunction
 " tComment ---------------------------------------------------------------------
 
 call tcomment#DefineType('python', '# %s')
-call tcomment#DefineType('coffee', '# %s')
 call tcomment#DefineType('sass', '// %s')
 call tcomment#DefineType('slim', '/ %s')
 call tcomment#DefineType('cucumber', '# %s')
