@@ -33,3 +33,8 @@ source $(brew --prefix nvm)/nvm.sh
 
 export NODE_PATH=$NODE_PATH:`npm root -g`
 
+
+# Misc
+# ------------------------------------------------------------------------------
+
+ssh-add -K ~/.ssh/id_rsa &> /dev/null

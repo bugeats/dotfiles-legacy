@@ -38,7 +38,7 @@ Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lfilho/cosco.vim'
 Plug 'mkitt/tabline.vim'
 Plug 'mxw/vim-jsx'
