@@ -9,7 +9,10 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
 }
 
-blue_star=$'\e[34m\xE2\x98\x85\e[0m'
+# echo -n X | hexdump
+
+# blue_star=$'\e[34m\xE2\x98\x85\e[0m'
+blue_star=$'\e[34m\xe1\x97\x92\e[0m'
 dim_path='\e[2m\w\e[0m'
 
 export PS1="$dim_path\e[33m\$(parse_git_branch) $blue_star "

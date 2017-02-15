@@ -23,13 +23,12 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
-Plug 'benekastah/neomake'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
-Plug 'groenewege/vim-less'
 Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
@@ -38,13 +37,13 @@ Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lfilho/cosco.vim'
+Plug 'lfilho/cosco.vim' " Comma and semi-colon insertion bliss for vim.
 Plug 'mkitt/tabline.vim'
 Plug 'mxw/vim-jsx'
+Plug 'neomake/neomake'
 Plug 'neovim/node-host'
 Plug 'nono/vim-handlebars'
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
@@ -82,34 +81,34 @@ set autoindent
 set autoread
 set background=dark
 set backupdir=./.backup,.,/tmp
-set clipboard=unnamed         " support OS X clipboard
-set cursorline                " highlighted cursor row
-set expandtab                 " insert spaces instead when pressing <tab>
-set formatoptions-=cro        " no annoying comment autoformat foo
-set guifont=DejaVuSansMono:h14 " This is the best programming font. I declare it.
-set guitablabel=%M%t\ (%F)    " minimal GUI tab label
-set hidden                    " Don't need to see abandoned buffers
+set clipboard=unnamed                  " support OS X clipboard
+set cursorline                         " highlighted cursor row
+set expandtab                          " insert spaces instead when pressing <tab>
+set formatoptions-=cro                 " no annoying comment autoformat foo
+set guifont=DejaVuSansMono:h14         " This is the best programming font. I declare it.
+set guitablabel=%M%t\ (%F)             " minimal GUI tab label
+set hidden                             " Don't need to see abandoned buffers
 set hlsearch
 set ignorecase
 set list
-set listchars=tab:▸\ ,eol:¬   " Use same symbols as TextMate for tabstops & EOLs
+set listchars=tab:▸\ ,eol:¬            " Use same symbols as TextMate for tabstops & EOLs
 set nobackup
-set noerrorbells              " don't beep, asshole
+set noerrorbells                       " don't beep, asshole
 set noswapfile
 set nowrap
 set number
 set ruler
 set rulerformat=%cx%l%V%=%P
 set shell=/bin/bash
-set shiftwidth=4              " default to 4 spaces for indentation
-set showtabline=2             " always show tab line
+set shiftwidth=4                       " default to 4 spaces for indentation
+set showtabline=2                      " always show tab line
 set smartindent
-set statusline=>>\ %f:%l:%c " minimal status line with file name
-set statusline+=%=%y%m\       " right-aligned file type [modified]
-set synmaxcol=160             " Don't syntax highlight past 160 cols (perf)
-set t_Co=256                  " Set terminal colors to 256 (tmux)
-set tabstop=4                 " use four space chars when pressing <tab>
-set visualbell                " don't beep
+set statusline+=%=%y%m\                " right-aligned file type [modified]
+set statusline=>>\ %f:%l:%c            " minimal status line with file name
+set synmaxcol=160                      " Don't syntax highlight past 160 cols (perf)
+set t_Co=256                           " Set terminal colors to 256 (tmux)
+set tabstop=4                          " use four space chars when pressing <tab>
+set visualbell                         " don't beep
 set wildignore=*.swp,*.pyc
 
 let g:netrw_dirhistmax = 0    " no .netrwhist turds please
@@ -182,6 +181,16 @@ nnoremap <Leader>wh :wincmd h<CR>
 nnoremap <Leader>wd :wincmd q<CR>
 " (w)indow-(m)aximize
 nnoremap <Leader>wm :only<CR>
+
+nnoremap <c-j> :wincmd j<CR>
+nnoremap <c-k> :wincmd k<CR>
+nnoremap <c-l> :wincmd l<CR>
+nnoremap <c-v> :wincmd v<CR> :wincmd l<CR>
+nnoremap <c-s> :wincmd s<CR> :wincmd j<CR>
+nnoremap <c-q> :wincmd q<CR>
+nnoremap <c-h> :wincmd h<CR>
+nnoremap <c-d> :wincmd q<CR>
+nnoremap <c-m> :only<CR>
 
 " Tab Tasks ----------------------------
 
