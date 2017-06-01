@@ -181,6 +181,8 @@ nnoremap <Leader>wh :wincmd h<CR>
 nnoremap <Leader>wd :wincmd q<CR>
 " (w)indow-(m)aximize
 nnoremap <Leader>wm :only<CR>
+" (w)indow-(f)ocus
+nnoremap <Leader>wf :only<CR>:NERDTree<CR>:wincmd l<CR>:GoldenViewResize<CR>
 
 nnoremap <c-j> :wincmd j<CR>
 nnoremap <c-k> :wincmd k<CR>
@@ -291,6 +293,8 @@ let g:lmap.w = { 'name' : 'Windows' }
 nmap j gj
 nmap k gk
 
+" gp selects pasted text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Filetypes --------------------------------------------------------------------
 
@@ -316,7 +320,7 @@ augroup filetypes
     autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
     autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
     autocmd Filetype stylus     setlocal ts=2 sw=2 expandtab
-    autocmd Filetype taskpaper  setlocal ts=2 sw=2 expandtab nolist
+    autocmd Filetype taskpaper  setlocal tabstop=2 shiftwidth=2 noexpandtab nolist
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab

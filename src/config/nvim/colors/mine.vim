@@ -110,7 +110,7 @@ call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
 call s:smartHi('RedshiftHighlighted',       s:p.k1, s:p.k4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
-call s:smartHi('RedshiftAttention',         s:p.k1, '')
+call s:smartHi('RedshiftAttention',         s:p.a1, s:p.k4)
 
 call s:smartHi('RedshiftGreen',  s:p.t2, '')
 call s:smartHi('RedshiftYellow', s:p.b2, '')
@@ -161,22 +161,23 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptConsoleMethod",
     \"javascriptDOMDocMethod",
     \"javascriptDOMElemProp",
-    \"javascriptDOMStorageProp",
     \"javascriptDOMEventProp",
+    \"javascriptDOMStorageProp",
     \"javascriptES6SetMethod",
     \"javascriptFileReaderProp",
     \"javascriptFunctionMethod",
     \"javascriptHeadersMethod",
     \"javascriptJSONStaticMethod",
     \"javascriptMethod",
-    \"javascriptStringMethod",
-    \"javascriptPromiseStaticMethod",
     \"javascriptPromiseMethod",
+    \"javascriptPromiseStaticMethod",
     \"javascriptProp",
+    \"javascriptReflectMethod",
+    \"javascriptRegexpString",
     \"javascriptRequestProp",
     \"javascriptResponseProp",
-    \"javascriptRegexpString",
-    \"javascriptReflectMethod",
+    \"javascriptStringMethod",
+    \"xmlTagName",
 \])
 
 call s:linkGroup('RedshiftComment', [
@@ -219,8 +220,12 @@ call s:linkGroup('RedshiftControl', [
     \"pugAttributesDelimiter",
     \"stylusProperty",
     \"stylusVariableAssignment",
+    \"taskpaperListItem",
     \"vimContinue",
     \"vimParenSep",
+    \"xmlEndTag",
+    \"xmlEqual",
+    \"xmlTag",
     \"yamlKeyValueDelimiter",
 \])
 
@@ -236,7 +241,15 @@ call s:linkGroup('RedshiftKeyword', [
     \"clojureDefine",
     \"clojureFunc",
     \"clojureSpecial",
+    \"cssBackgroundProp",
+    \"cssBorderProp",
+    \"cssBoxProp",
+    \"cssColorProp",
+    \"cssFontProp",
     \"cssProp",
+    \"cssProp",
+    \"cssTextProp",
+    \"cssVisualProp",
     \"javascriptCase",
     \"javascriptConditional",
     \"javascriptConditionalElse",
@@ -249,7 +262,11 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptSwitch",
     \"javascriptTry",
     \"javascriptVariable",
+    \"pugScriptStatement",
     \"pugTag",
+    \"shEcho",
+    \"stylusImport",
+    \"taskpaperProject",
     \"vimCommand",
     \"vimLet",
 \])
@@ -302,6 +319,7 @@ call s:linkGroup('RedshiftAttention', [
     \"ErrorMsg",
     \"JavascriptCommentTodo",
     \"Todo",
+    \"ExtraWhitespace",
 \])
 
 " ----
@@ -334,10 +352,6 @@ call s:linkGroup('RedshiftChromePanelActive', [
     \"TabLineSel",
     \"PmenuSel",
     \"StatusLine",
-\])
-
-call s:linkGroup('RedshiftAttention', [
-    \"ExtraWhitespace",
 \])
 
 " ----
