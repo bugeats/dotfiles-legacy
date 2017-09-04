@@ -48,7 +48,6 @@ Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -60,15 +59,15 @@ Plug 'zhaocai/GoldenView.Vim'
 
 " Clojure stuff
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
-Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
-Plug 'snoe/nvim-parinfer.js', { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
-Plug 'tpope/vim-dispatch', { 'for': ['clojure'] }
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-Plug 'tpope/vim-projectionist', { 'for': ['clojure'] }
-Plug 'tpope/vim-salve', { 'for': ['clojure'] }
-Plug 'venantius/vim-cljfmt', { 'for': ['clojure'] }
-Plug 'venantius/vim-eastwood', { 'for': ['clojure'] }
+Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
+Plug 'snoe/nvim-parinfer.js',      { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-classpath',        { 'for': ['clojure'] }
+Plug 'tpope/vim-dispatch',         { 'for': ['clojure'] }
+Plug 'tpope/vim-fireplace',        { 'for': ['clojure'] }
+Plug 'tpope/vim-projectionist',    { 'for': ['clojure'] }
+Plug 'tpope/vim-salve',            { 'for': ['clojure'] }
+Plug 'venantius/vim-cljfmt',       { 'for': ['clojure'] }
+Plug 'venantius/vim-eastwood',     { 'for': ['clojure'] }
 
 call plug#end()
 
@@ -166,6 +165,9 @@ nnoremap <Leader>fev :e $MYVIMRC<CR>
 nnoremap <Leader>fec :e ~/.config/nvim/colors/mine.vim<CR>
 nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
 nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
+" \fl to set local directory to current file path
+nnoremap <Leader>fl :lcd %:p:h<cr>
+
 
 " Window Tasks -------------------------
 
@@ -236,14 +238,25 @@ autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applica
 autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
 
 
+" Lint Tasks ---------------------------
+
+" neomake open location window
+nnoremap <Leader>lo :lopen<CR>
+" neomake close location window
+nnoremap <Leader>lc :lclose<CR>
+" neomake go to current error/warning
+nnoremap <Leader>ll :ll<CR>
+" neomake next error/warning
+nnoremap <Leader>ln :lnext<CR>
+" neomake previous error/warning
+nnoremap <Leader>lp :lprev<CR>
+
+
 " \q ever so slightly faster quit command
 nnoremap <Leader>q :q<CR>
 
 " \d show/hide NerdTree
 nnoremap <Leader>d :NERDTreeToggle<cr>
-
-" \l to set local directory to current file path
-nnoremap <Leader>l :lcd %:p:h<cr>
 
 " \p to show fuzzy search
 nnoremap <Leader>p :CtrlP<cr>
@@ -336,7 +349,6 @@ let g:vim_json_syntax_conceal = 0
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|build$\|test$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-
 
 " NerdTree ---------------------------------------------------------------------
 
@@ -448,6 +460,8 @@ let g:deoplete#enable_at_startup = 1
 " Neomake ----------------------------------------------------------------------
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
+let g:neomake_error_sign={'texthl': 'NeomakeErrorMsg'}
 
 autocmd! BufWritePost * Neomake
 
