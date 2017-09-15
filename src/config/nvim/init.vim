@@ -33,18 +33,15 @@ Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'jiangmiao/auto-pairs', { 'for': ['javascript'] }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
 Plug 'lfilho/cosco.vim' " Comma and semi-colon insertion bliss for vim.
 Plug 'mkitt/tabline.vim'
-Plug 'mxw/vim-jsx'
 Plug 'neomake/neomake'
 Plug 'neovim/node-host'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
-Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -57,7 +54,13 @@ Plug 'tpope/vim-unimpaired'
 Plug 'wavded/vim-stylus'
 Plug 'zhaocai/GoldenView.Vim'
 
-" Clojure stuff
+" Javascript Plugins
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
+Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
+
+" Clojure Plugins
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
 Plug 'snoe/nvim-parinfer.js',      { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
@@ -425,10 +428,11 @@ endfunction
 
 " tComment ---------------------------------------------------------------------
 
+call tcomment#DefineType('cucumber', '# %s')
+call tcomment#DefineType('pug', '//- %s')
 call tcomment#DefineType('python', '# %s')
 call tcomment#DefineType('sass', '// %s')
 call tcomment#DefineType('slim', '/ %s')
-call tcomment#DefineType('cucumber', '# %s')
 
 
 " GitGutter --------------------------------------------------------------------
@@ -455,11 +459,14 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " Deoplete ---------------------------------------------------------------------
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
 
 
 " Neomake ----------------------------------------------------------------------
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_pug_enabled_makers = ['puglint']
+
 let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
 let g:neomake_error_sign={'texthl': 'NeomakeErrorMsg'}
 
