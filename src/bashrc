@@ -19,6 +19,12 @@ star=$'\xe1\x97\x92'
 
 export PS1="${DIM}\w${PS_CLEAR}${YELLOW}\$(parse_git_branch) ${BLUE}$star ${PS_CLEAR}"
 
+# Show current working directory in iTerm tab title
+# https://gist.github.com/phette23/5270658
+if [ $ITERM_SESSION_ID ]; then
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
+
 # Aliases
 # ------------------------------------------------------------------------------
 

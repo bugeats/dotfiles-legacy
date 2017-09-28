@@ -88,7 +88,6 @@ set cursorline                         " highlighted cursor row
 set expandtab                          " insert spaces instead when pressing <tab>
 set formatoptions-=cro                 " no annoying comment autoformat foo
 set guifont=DejaVuSansMono:h14         " This is the best programming font. I declare it.
-set guitablabel=%M%t\ (%F)             " minimal GUI tab label
 set hidden                             " Don't need to see abandoned buffers
 set hlsearch
 set ignorecase
@@ -110,6 +109,7 @@ set statusline=>>\ %f:%l:%c            " minimal status line with file name
 set synmaxcol=160                      " Don't syntax highlight past 160 cols (perf)
 set t_Co=256                           " Set terminal colors to 256 (tmux)
 set tabstop=4                          " use four space chars when pressing <tab>
+set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to the current working directory name (project name)
 set visualbell                         " don't beep
 set wildignore=*.swp,*.pyc
 
@@ -117,7 +117,6 @@ let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 
 " never try to automatically insert commented new lines
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 
 " Mappings ---------------------------------------------------------------------
 
