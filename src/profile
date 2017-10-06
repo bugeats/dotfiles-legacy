@@ -38,3 +38,5 @@ export NODE_PATH=$NODE_PATH:`npm root -g`
 # ------------------------------------------------------------------------------
 
 ssh-add -K ~/.ssh/id_rsa &> /dev/null
+
+export PATH="$HOME/.cargo/bin:$PATH"
