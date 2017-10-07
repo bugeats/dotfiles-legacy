@@ -91,12 +91,34 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (Tomorrow Night Bright)
+# Colors -----------------------------------------------------------------------
+
+# Custom generated pallete based on HUSL colors
+
+# bg:             '0x272524'
+# fg:             '0xb8b8aa'
+# black-normal:   '0x5f5955'
+# black-dim:      '0x403c3a'
+# white-normal:   '0xc0b5ad'
+# white-dim:      '0x8a827e'
+# red-normal:     '0xd8af8e'
+# red-dim:        '0xa57b55'
+# yellow-normal:  '0xa8bf85'
+# yellow-dim:     '0x748c4a'
+# green-normal:   '0x71c6af'
+# green-dim:      '0x22947b'
+# cyan-normal:    '0x83bfda'
+# cyan-dim:       '0x418da9'
+# blue-normal:    '0xc6ade1'
+# blue-dim:       '0x9478b0'
+# magenta-normal: '0xe6a4be'
+# magenta-dim:    '0xb46f8c'
+
 colors:
   # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xeaeaea'
+    background: '0x272524'
+    foreground: '0xb8b8aa'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
@@ -105,36 +127,36 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xd54e53'
-    green:   '0xb9ca4a'
-    yellow:  '0xe6c547'
-    blue:    '0x7aa6da'
-    magenta: '0xc397d8'
-    cyan:    '0x70c0ba'
-    white:   '0xffffff'
+    black:   '0x5f5955'
+    red:     '0xd8af8e'
+    green:   '0x71c6af'
+    yellow:  '0xa8bf85'
+    blue:    '0xc6ade1'
+    magenta: '0xe6a4be'
+    cyan:    '0x83bfda'
+    white:   '0xc0b5ad'
 
   # Bright colors
   bright:
-    black:   '0x666666'
-    red:     '0xff3334'
-    green:   '0x9ec400'
-    yellow:  '0xe7c547'
-    blue:    '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan:    '0x54ced6'
-    white:   '0xffffff'
+    black:   '0x5f5955'
+    red:     '0xd8af8e'
+    green:   '0x71c6af'
+    yellow:  '0xa8bf85'
+    blue:    '0xc6ade1'
+    magenta: '0xe6a4be'
+    cyan:    '0x83bfda'
+    white:   '0xc0b5ad'
 
   # Dim colors (Optional)
   dim:
-    black:   '0x333333'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xdddddd'
+    black:   '0x403c3a'
+    red:     '0xa57b55'
+    green:   '0x22947b'
+    yellow:  '0x748c4a'
+    blue:    '0x9478b0'
+    magenta: '0xb46f8c'
+    cyan:    '0x418da9'
+    white:   '0x8a827e'
 
 
 # Visual Bell
@@ -250,6 +272,12 @@ key_bindings:
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
+  # make ctrl+space work as tmux prefix
+  - { key: Space,    mods: Control, chars: "\x00"                        }
+  - { key: Key1,     mods: Command, chars: "\x00\x1b1"                  }
+  - { key: Key2,     mods: Command, chars: "\x00\x1b2"                  }
+  # - { key: 2,        mods: Command, chars: "\x00\x1bt2"                  }
+  # - { key: 3,        mods: Command, chars: "\x00\x1bt3"                  }
 
 # Mouse bindings
 #
