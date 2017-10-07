@@ -58,6 +58,48 @@ let s:p.d6 = "#262624"
 let s:p.t6 = "#242625"
 let s:p.k6 = "#242627"
 
+let s:p.blacknormal   = "#5f5955"
+let s:p.blackbright   = "#5f5955"
+let s:p.blackdim      = "#403c3a"
+let s:p.whitenormal   = "#c0b5ad"
+let s:p.whitebright   = "#c0b5ad"
+let s:p.whitedim      = "#8a827e"
+let s:p.rednormal     = "#d8af8e"
+let s:p.redbright     = "#d8af8e"
+let s:p.reddim        = "#a57b55"
+let s:p.yellownormal  = "#a8bf85"
+let s:p.yellowbright  = "#a8bf85"
+let s:p.yellowdim     = "#748c4a"
+let s:p.greennormal   = "#71c6af"
+let s:p.greenbright   = "#71c6af"
+let s:p.greendim      = "#22947b"
+let s:p.cyannormal    = "#83bfda"
+let s:p.cyanbright    = "#83bfda"
+let s:p.cyandim       = "#418da9"
+let s:p.bluenormal    = "#c6ade1"
+let s:p.bluebright    = "#c6ade1"
+let s:p.bluedim       = "#9478b0"
+let s:p.magentanormal = "#e6a4be"
+let s:p.magentabright = "#e6a4be"
+let s:p.magentadim    = "#b46f8c"
+
+let g:terminal_color_0  = s:p.blacknormal
+let g:terminal_color_1  = s:p.rednormal
+let g:terminal_color_2  = s:p.greennormal
+let g:terminal_color_3  = s:p.yellownormal
+let g:terminal_color_4  = s:p.bluenormal
+let g:terminal_color_5  = s:p.magentanormal
+let g:terminal_color_6  = s:p.cyannormal
+let g:terminal_color_7  = s:p.whitenormal
+let g:terminal_color_8  = s:p.blacknormal
+let g:terminal_color_9  = s:p.rednormal
+let g:terminal_color_10 = s:p.greennormal
+let g:terminal_color_11 = s:p.yellownormal
+let g:terminal_color_12 = s:p.bluenormal
+let g:terminal_color_13 = s:p.magentanormal
+let g:terminal_color_14 = s:p.cyannormal
+let g:terminal_color_15 = s:p.whitenormal
+
 " Functions --------------------------------------------------------------------
 
 function! s:linkGroup(item, toLink)
@@ -112,9 +154,9 @@ call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
 call s:smartHi('RedshiftAttention',         s:p.k1, '')
 
-call s:smartHi('RedshiftGreen',  s:p.t2, '')
-call s:smartHi('RedshiftYellow', s:p.b2, '')
-call s:smartHi('RedshiftRed',    s:p.a2, '')
+call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
+call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
+call s:smartHi('RedshiftRed',    s:p.rednormal, '')
 
 " Links ------------------------------------------------------------------------
 

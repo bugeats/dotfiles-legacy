@@ -493,6 +493,9 @@ if has('nvim')
     au WinEnter *pid:* call feedkeys('i')
 endif
 
+" hide line numbers on terminal
+au TermOpen * setlocal nonumber norelativenumber
+
 
 " Neoterm ----------------------------------------------------------------------
 
