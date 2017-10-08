@@ -107,7 +107,7 @@ set smartindent
 set statusline+=%=%y%m\                       " right-aligned file type [modified]
 set statusline=>>\ %f:%l:%c                   " minimal status line with file name
 set synmaxcol=160                             " Don't syntax highlight past 160 cols (perf)
-set t_Co=256                           " Set terminal colors to 256 (tmux)
+" set t_Co=256                           " Set terminal colors to 256 (tmux)
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
 set termguicolors                             " enable true color support
