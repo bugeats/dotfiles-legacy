@@ -220,6 +220,9 @@ key_bindings:
   - { key: Key8, mods: Command, chars: "\x1b8" }
   - { key: Key9, mods: Command, chars: "\x1b9" }
 
+  # Command-` same as Command-0 (for tmux)
+  - { key: Grave, mods: Command, chars: "\x1b0" }
+
   - { key: K, mods: Command, chars: "\x1bk" }
   - { key: N, mods: Command, chars: "\x1bn" }
   - { key: T, mods: Command, chars: "\x1bt" }
