@@ -1,0 +1,3 @@
+date +%s >> ~/derps
+tmux refresh-client -S
+say derp

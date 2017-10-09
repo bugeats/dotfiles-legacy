@@ -1,0 +1,20 @@
+#!/usr/bin/env lua
+
+local open = io.open
+
+local derps_path = os.getenv("HOME").."/derps"
+local derps_file = open(derps_path, "rb")
+
+local derps_per_hour = 0
+
+for ts in derps_file:lines() do
+    local seconds_from_now = os.difftime(os.time(), os.date(ts))
+    if seconds_from_now < (60 * 60) then
+        derps_per_hour = derps_per_hour + 1
+    end
+end
+
+io.write(derps_per_hour)
+
+derps_file:close()
+

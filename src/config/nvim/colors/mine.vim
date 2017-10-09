@@ -22,41 +22,41 @@ au TermOpen * setlocal nolist
 let s:p = {}
 
 let s:p.a1 = "#d8af8e"
-let s:p.b1 = "#94c390"
-let s:p.g1 = "#bbba81"
-let s:p.d1 = "#b8b8aa"
-let s:p.t1 = "#71c6af"
-let s:p.k1 = "#83bfda"
 let s:p.a2 = "#a57b55"
-let s:p.b2 = "#5d9058"
-let s:p.g2 = "#888744"
-let s:p.d2 = "#84847c"
-let s:p.t2 = "#22947b"
-let s:p.k2 = "#418da9"
 let s:p.a3 = "#645851"
-let s:p.b3 = "#525e51"
-let s:p.g3 = "#5c5b4e"
-let s:p.d3 = "#5b5b56"
-let s:p.t3 = "#4b5f59"
-let s:p.k3 = "#4f5d64"
 let s:p.a4 = "#413c39"
-let s:p.b4 = "#393e39"
-let s:p.g4 = "#3d3d37"
-let s:p.d4 = "#3d3d3a"
-let s:p.t4 = "#363f3c"
-let s:p.k4 = "#383e41"
 let s:p.a5 = "#2d2b29"
-let s:p.b5 = "#2a2c29"
-let s:p.g5 = "#2c2c29"
-let s:p.d5 = "#2c2c29"
-let s:p.t5 = "#282c2b"
-let s:p.k5 = "#292c2d"
 let s:p.a6 = "#272524"
+let s:p.b1 = "#94c390"
+let s:p.b2 = "#5d9058"
+let s:p.b3 = "#525e51"
+let s:p.b4 = "#393e39"
+let s:p.b5 = "#2a2c29"
 let s:p.b6 = "#242624"
-let s:p.g6 = "#262624"
+let s:p.d1 = "#b8b8aa"
+let s:p.d2 = "#84847c"
+let s:p.d3 = "#5b5b56"
+let s:p.d4 = "#3d3d3a"
+let s:p.d5 = "#2c2c29"
 let s:p.d6 = "#262624"
-let s:p.t6 = "#242625"
+let s:p.g1 = "#bbba81"
+let s:p.g2 = "#888744"
+let s:p.g3 = "#5c5b4e"
+let s:p.g4 = "#3d3d37"
+let s:p.g5 = "#2c2c29"
+let s:p.g6 = "#262624"
+let s:p.k1 = "#83bfda"
+let s:p.k2 = "#418da9"
+let s:p.k3 = "#4f5d64"
+let s:p.k4 = "#383e41"
+let s:p.k5 = "#292c2d"
 let s:p.k6 = "#242627"
+let s:p.t1 = "#71c6af"
+let s:p.t2 = "#22947b"
+let s:p.t3 = "#4b5f59"
+let s:p.t4 = "#363f3c"
+let s:p.t5 = "#282c2b"
+let s:p.t6 = "#242625"
 
 let s:p.blacknormal   = "#5f5955"
 let s:p.blackbright   = "#5f5955"
@@ -259,6 +259,7 @@ call s:linkGroup('RedshiftControl', [
     \"javascriptTemplateSB",
     \"jsonBraces",
     \"jsonNoise",
+    \"luaParen",
     \"markdownHeadingDelimiter",
     \"markdownListMarker",
     \"markdownRule",
@@ -307,6 +308,11 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptSwitch",
     \"javascriptTry",
     \"javascriptVariable",
+    \"luaCond",
+    \"luaFunction",
+    \"luaIn",
+    \"luaRepeat",
+    \"luaStatement",
     \"pugScriptStatement",
     \"pugTag",
     \"shEcho",
