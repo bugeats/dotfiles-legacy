@@ -176,7 +176,7 @@ key_bindings:
   - { key: Space,    mods: Control, chars: "\x00"                        }
 
   # increment derps-per-hour counter
-  - { key: D, mods: Command, command: { program: "derp", args: [] } }
+  - { key: D, mods: Command, command: { program: "bash", args: ["/Users/chadwick/bin/derp"] } }
 
   # Pass macOS standard Command keys to tmux
   # Command-1 actually sends Alt-1, which tmux interprets at M-1
