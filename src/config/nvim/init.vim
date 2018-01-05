@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/unite.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
@@ -52,6 +53,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wavded/vim-stylus'
+Plug 'yuku-t/unite-git'
+Plug 'yuttie/comfortable-motion.vim'
 Plug 'zhaocai/GoldenView.Vim'
 
 " Javascript Plugins
@@ -162,7 +165,12 @@ let mapleader = "\<Space>"
 nnoremap <Leader> :<C-U>LeaderGuide ' '<CR>
 nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
 
+call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
+let g:lmap = {}
+
 " File Tasks ---------------------------
+
+let g:lmap.f = { 'name' : 'Files' }
 
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>fed :e ~/Desktop<CR>
@@ -170,11 +178,24 @@ nnoremap <Leader>fev :e $MYVIMRC<CR>
 nnoremap <Leader>fec :e ~/.config/nvim/colors/mine.vim<CR>
 nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
 nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
+
 " \fl to set local directory to current file path
-nnoremap <Leader>fl :lcd %:p:h<cr>
+nnoremap <Leader>fd :lcd %:p:h<cr>
+
+let g:lmap.f.l = { 'name' : 'List' }
+
+let g:lmap.f.l.m = ['Unite git_modified', 'Modified (git)']
+let g:lmap.f.l.c = ['Unite git_cached', 'Cached (git)']
+let g:lmap.f.l.u = ['Unite git_untracked', 'Untracked (git)']
+
+let g:lmap.f.r = { 'name' : 'Read' }
+let g:lmap.f.r.v = ['so $MYVIMRC', 'vimrc']
+
 
 
 " Window Tasks -------------------------
+
+let g:lmap.w = { 'name' : 'Windows' }
 
 nnoremap <Leader>wj :wincmd j<CR>
 nnoremap <Leader>wk :wincmd k<CR>
@@ -192,17 +213,18 @@ nnoremap <Leader>wm :only<CR>
 " (w)indow-(f)ocus
 nnoremap <Leader>wf :only<CR>:NERDTree<CR>:wincmd l<CR>:GoldenViewResize<CR>
 
-nnoremap <c-j> :wincmd j<CR>
-nnoremap <c-k> :wincmd k<CR>
-nnoremap <c-l> :wincmd l<CR>
-nnoremap <c-v> :wincmd v<CR> :wincmd l<CR>
-nnoremap <c-s> :wincmd s<CR> :wincmd j<CR>
-nnoremap <c-q> :wincmd q<CR>
-nnoremap <c-h> :wincmd h<CR>
-nnoremap <c-d> :wincmd q<CR>
-nnoremap <c-m> :only<CR>
+let g:lmap.w.z = ['GoldenViewResize', 'Resize']
+
+
+" Navigation ---------------------------
+
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+
 
 " Tab Tasks ----------------------------
+
+let g:lmap.t = { 'name' : 'Tabs' }
 
 nnoremap <Leader>1 :tabn 1<CR>
 nnoremap <Leader>2 :tabn 2<CR>
@@ -299,12 +321,6 @@ nnoremap <Leader>r :Require<CR>
 
 " \b to open web browser
 nnoremap <Leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
-
-" Leader Guide -----------------------------------------------------------------
-
-let g:lmap =  {}
-let g:lmap.f = { 'name' : 'File Menu' }
-let g:lmap.w = { 'name' : 'Windows' }
 
 " Movement ---------------------------------------------------------------------
 
@@ -514,6 +530,11 @@ endfunc
 
 " currently using a custom color scheme (in progress)
 colorscheme mine
+
+
+" Javascript Stuff -------------------------------------------------------------
+
+" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
 " Clojure Stuff ----------------------------------------------------------------

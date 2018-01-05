@@ -207,6 +207,7 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptDOMStorageProp",
     \"javascriptES6SetMethod",
     \"javascriptFileReaderProp",
+    \"javascriptFuncCallArg",
     \"javascriptFunctionMethod",
     \"javascriptHeadersMethod",
     \"javascriptJSONStaticMethod",
@@ -219,6 +220,7 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptRequestProp",
     \"javascriptResponseProp",
     \"javascriptStringMethod",
+    \"xmlEndTag",
     \"xmlTagName",
 \])
 
@@ -253,7 +255,6 @@ call s:linkGroup('RedshiftControl', [
     \"javascriptOpSymbol",
     \"javascriptOpSymbols",
     \"javascriptParenObjectLiteral",
-    \"javascriptParenTagLiteral",
     \"javascriptParens",
     \"javascriptProperty",
     \"javascriptTemplateSB",
