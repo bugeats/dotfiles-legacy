@@ -34,8 +34,10 @@ font:
     family: DejaVu Sans Mono
   bold:
     family: DejaVu Sans Mono
+    style: Bold
   italic:
     family: DejaVu Sans Mono
+    style: Bold Oblique
   size: 13.0
 
   # Offset is the extra space around each character.
@@ -177,6 +179,8 @@ key_bindings:
 
   # increment derps-per-hour counter
   - { key: D, mods: Command, command: { program: "bash", args: ["/Users/chadwick/bin/derp"] } }
+
+  - { key: B, mods: Command, command: { program: "bash", args: ["-c", "env | tee /tmp/alacritty_env2"] } }
 
   # Pass macOS standard Command keys to tmux
   # Command-1 actually sends Alt-1, which tmux interprets at M-1

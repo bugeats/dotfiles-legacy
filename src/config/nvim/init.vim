@@ -29,7 +29,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'elzr/vim-json'
-Plug 'ervandew/supertab'
 Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
@@ -211,7 +210,7 @@ nnoremap <Leader>wd :wincmd q<CR>
 " (w)indow-(m)aximize
 nnoremap <Leader>wm :only<CR>
 " (w)indow-(f)ocus
-nnoremap <Leader>wf :only<CR>:NERDTree<CR>:wincmd l<CR>:GoldenViewResize<CR>
+nnoremap <Leader>wf :only<CR>:NERDTreeFind<CR>:wincmd l<CR>:GoldenViewResize<CR>
 
 let g:lmap.w.z = ['GoldenViewResize', 'Resize']
 
@@ -479,6 +478,16 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
+
+" incantation to get normal tab completion behavior with deoplete
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
 
 " Neomake ----------------------------------------------------------------------

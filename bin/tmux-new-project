@@ -1,0 +1,7 @@
+tmux new-window 'nvim .'
+tmux movew -r
+tmux new-window 'git status'
+tmux movew -r
+tmux new-window 'npm run dev'
+tmux movew -r
+tmux select-window -t 1
