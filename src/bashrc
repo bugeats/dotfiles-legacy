@@ -1,6 +1,10 @@
 # Bash
 # ------------------------------------------------------------------------------
 
+# required by tmux-resurrect
+# https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_shell_history.md
+HISTCONTROL=ignoreboth
+
 # VI mode mutherfucker
 set -o vi
 

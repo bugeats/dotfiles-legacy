@@ -8,3 +8,4 @@ src/config/configstore
 src/config/gtk-2.0
 src/config/nyaovim
 src/config/heroku
+src/tmux

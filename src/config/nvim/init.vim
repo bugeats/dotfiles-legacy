@@ -74,6 +74,13 @@ Plug 'tpope/vim-salve',            { 'for': ['clojure'] }
 Plug 'venantius/vim-cljfmt',       { 'for': ['clojure'] }
 Plug 'venantius/vim-eastwood',     { 'for': ['clojure'] }
 
+" Haskell Plugins
+Plug 'neovimhaskell/haskell-vim',  { 'for': ['haskell'] }
+
+" Python Plugins
+" Plug 'hdima/python-syntax',  { 'for': ['python'] }
+Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+
 call plug#end()
 
 
