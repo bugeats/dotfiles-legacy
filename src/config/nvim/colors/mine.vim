@@ -13,9 +13,11 @@ autocmd FileType nerdtree setlocal nolist
 " hide hidden chars in terminal
 au TermOpen * setlocal nolist
 
-" Palette ----------------------------------------------------------------------
+" General Syntax Matches -------------------------------------------------------
 
-
+autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
+autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
+autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=]/
 
 " Palette ----------------------------------------------------------------------
 
@@ -243,6 +245,8 @@ call s:linkGroup('RedshiftControl', [
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
+    \"haskellOperators",
+    \"haskellDelimiter",
     \"javascriptArrowFunc",
     \"javascriptBraces",
     \"javascriptBrackets",
@@ -274,6 +278,9 @@ call s:linkGroup('RedshiftControl', [
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
+    \"generalParens",
+    \"generalBrackets",
+    \"generalControlChar",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -297,6 +304,8 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssProp",
     \"cssTextProp",
     \"cssVisualProp",
+    \"haskellKeyword",
+    \"haskellImportKeywords",
     \"javascriptCase",
     \"javascriptConditional",
     \"javascriptConditionalElse",
@@ -306,6 +315,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptImport",
     \"javascriptOperator",
     \"javascriptReturn",
+    \"javascriptRepeat",
     \"javascriptSwitch",
     \"javascriptTry",
     \"javascriptVariable",
@@ -321,6 +331,14 @@ call s:linkGroup('RedshiftKeyword', [
     \"taskpaperProject",
     \"vimCommand",
     \"vimLet",
+    \"pythonStatement",
+    \"pythonOperator",
+    \"pythonImport",
+    \"pythonRepeat",
+    \"pythonConditional",
+    \"pythonExecption",
+    \"pythonInclude",
+    \"pythonRaiseFromStatement",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
