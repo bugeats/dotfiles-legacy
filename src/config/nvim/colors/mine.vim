@@ -339,6 +339,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonExecption",
     \"pythonInclude",
     \"pythonRaiseFromStatement",
+    \"shFunctionKey",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
