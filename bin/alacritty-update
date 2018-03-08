@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd `mktemp -d`
+pushd .
+git clone https://github.com/jwilm/alacritty.git
+cd ./alacritty
+make app
+rm -rf /Applications/Alacritty.app
+cp -r target/release/osx/Alacritty.app /Applications/
+popd
