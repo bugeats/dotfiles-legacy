@@ -1,9 +1,5 @@
-# Bash
-# ------------------------------------------------------------------------------
-
-# required by tmux-resurrect
-# https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_shell_history.md
-HISTCONTROL=ignoreboth
+# this file is for bash specific stuff
+# where ~/.profile is for more general environment setup
 
 # VI mode mutherfucker
 set -o vi
@@ -29,16 +25,5 @@ if [ $ITERM_SESSION_ID ]; then
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
 
-# Aliases
-# ------------------------------------------------------------------------------
-
-alias vd='git diff | nvim -'
-alias less='less -r'
-
-# ----
-
 # Now load general profile
 . ~/.profile
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

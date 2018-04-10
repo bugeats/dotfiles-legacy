@@ -1,5 +1,4 @@
-# Path
-# ------------------------------------------------------------------------------
+# Path -------------------------------------------------------------------------
 
 # homebrew
 export PATH="/usr/local/bin:$PATH"
@@ -13,34 +12,38 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # dotfiles/bin
 export PATH="/Users/chadwick/bin:$PATH"
 
+# added by Anaconda3 5.1.0 installer
+export PATH="/Users/chadwick/anaconda3/bin:$PATH"
 
-# Editors
-# ------------------------------------------------------------------------------
+# rust cargo package manager
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# Neovim -----------------------------------------------------------------------
 
 export EDITOR="/usr/local/bin/nvim -f"
-
-
-# Neovim
-# ------------------------------------------------------------------------------
-
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export TERM="screen-256color"
 
 
-# Node
-# ------------------------------------------------------------------------------
-
-export NODE_PATH="/usr/local/lib/node_modules"
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# Node -------------------------------------------------------------------------
 
 export NODE_PATH=$NODE_PATH:`npm root -g`
 
+# nvm / node version manager
+# https://github.com/creationix/nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Misc
-# ------------------------------------------------------------------------------
+
+# Alieses ----------------------------------------------------------------------
+
+alias vd='git diff | nvim -'
+alias less='less -r'
+
+
+# Misc -------------------------------------------------------------------------
 
 ssh-add -K ~/.ssh/id_rsa &> /dev/null
 
-export PATH="$HOME/.cargo/bin:$PATH"

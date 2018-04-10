@@ -28,6 +28,7 @@ Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
@@ -456,11 +457,11 @@ endfunction
 
 " tComment ---------------------------------------------------------------------
 
-call tcomment#DefineType('cucumber', '# %s')
-call tcomment#DefineType('pug', '//- %s')
-call tcomment#DefineType('python', '# %s')
-call tcomment#DefineType('sass', '// %s')
-call tcomment#DefineType('slim', '/ %s')
+call tcomment#type#Define('cucumber', '# %s')
+call tcomment#type#Define('pug', '//- %s')
+call tcomment#type#Define('python', '# %s')
+call tcomment#type#Define('sass', '// %s')
+call tcomment#type#Define('slim', '/ %s')
 
 
 " GitGutter --------------------------------------------------------------------

@@ -245,8 +245,11 @@ call s:linkGroup('RedshiftControl', [
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
-    \"haskellOperators",
+    \"generalBrackets",
+    \"generalControlChar",
+    \"generalParens",
     \"haskellDelimiter",
+    \"haskellOperators",
     \"javascriptArrowFunc",
     \"javascriptBraces",
     \"javascriptBrackets",
@@ -269,6 +272,8 @@ call s:linkGroup('RedshiftControl', [
     \"markdownListMarker",
     \"markdownRule",
     \"pugAttributesDelimiter",
+    \"pugInterpolationDelimiter",
+    \"pugPipeChar",
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"taskpaperListItem",
@@ -278,9 +283,6 @@ call s:linkGroup('RedshiftControl', [
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
-    \"generalParens",
-    \"generalBrackets",
-    \"generalControlChar",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -350,6 +352,7 @@ call s:linkGroup('RedshiftLiteral', [
     \"jsxRegion",
     \"markdownCode",
     \"markdownCodeBlock",
+    \"pugPipedText",
     \"yamlPlainScalar",
 \])
 
