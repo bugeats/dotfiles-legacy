@@ -63,6 +63,9 @@ Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 
+Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+Plug 'HerringtonDarkholme/yats.vim'
+
 " Clojure Plugins
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
@@ -349,7 +352,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 augroup filetypes
     autocmd!
     autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty
+    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype css        setlocal ts=2 sw=2 expandtab
@@ -359,15 +362,15 @@ augroup filetypes
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
     autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
     autocmd Filetype less       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
     autocmd Filetype pug        setlocal ts=2 sw=2 expandtab
     autocmd Filetype ruby       setlocal ts=2 sw=2 expandtab
     autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
     autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
     autocmd Filetype stylus     setlocal ts=2 sw=2 expandtab
-    autocmd Filetype taskpaper  setlocal tabstop=2 shiftwidth=2 noexpandtab nolist
-    autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist
-    autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist
+    autocmd Filetype taskpaper  setlocal tabstop=2 shiftwidth=2 noexpandtab nolist spell
+    autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
+    autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
 augroup END
 

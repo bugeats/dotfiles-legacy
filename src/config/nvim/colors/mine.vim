@@ -17,7 +17,7 @@ au TermOpen * setlocal nolist
 
 autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
 autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
-autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=]/
+autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=;]/
 
 " Palette ----------------------------------------------------------------------
 
@@ -153,8 +153,8 @@ call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
 call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
 call s:smartHi('RedshiftHighlighted',       s:p.k1, s:p.k4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
-call s:smartHi('RedshiftSelected',          '',     s:p.k4)
-call s:smartHi('RedshiftAttention',         s:p.k1, '')
+call s:smartHi('RedshiftSelected',          '',     s:p.b4)
+call s:smartHi('RedshiftAttention',         s:p.k1, s:p.k4)
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -230,10 +230,10 @@ call s:linkGroup('RedshiftComment', [
     \"Comment",
     \"javascriptDocComment",
     \"javascriptDocNamedDocParamType",
+    \"javascriptDocNamedParamType",
     \"javascriptDocNotation",
     \"javascriptDocParamName",
     \"javascriptDocParamType",
-    \"javascriptDocNamedParamType",
     \"javascriptDocTags",
     \"vimLineComment",
 \])
@@ -267,6 +267,10 @@ call s:linkGroup('RedshiftControl', [
     \"javascriptTemplateSB",
     \"jsonBraces",
     \"jsonNoise",
+    \"jsxCloseString",
+    \"jsxCloseTag",
+    \"jsxEqual",
+    \"jsxTag",
     \"luaParen",
     \"markdownHeadingDelimiter",
     \"markdownListMarker",
@@ -277,6 +281,14 @@ call s:linkGroup('RedshiftControl', [
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"taskpaperListItem",
+    \"typescriptArrowFunc",
+    \"typescriptArrowFuncDef",
+    \"typescriptAssign",
+    \"typescriptBinaryOp",
+    \"typescriptBraces",
+    \"typescriptDotNotation",
+    \"typescriptParens",
+    \"typescriptTemplateSB",
     \"vimContinue",
     \"vimParenSep",
     \"xmlEndTag",
@@ -306,8 +318,8 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssProp",
     \"cssTextProp",
     \"cssVisualProp",
-    \"haskellKeyword",
     \"haskellImportKeywords",
+    \"haskellKeyword",
     \"javascriptCase",
     \"javascriptConditional",
     \"javascriptConditionalElse",
@@ -315,9 +327,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptExport",
     \"javascriptIdentifier",
     \"javascriptImport",
+    \"javascriptNodeGlobal",
     \"javascriptOperator",
-    \"javascriptReturn",
     \"javascriptRepeat",
+    \"javascriptReturn",
     \"javascriptSwitch",
     \"javascriptTry",
     \"javascriptVariable",
@@ -328,20 +341,35 @@ call s:linkGroup('RedshiftKeyword', [
     \"luaStatement",
     \"pugScriptStatement",
     \"pugTag",
-    \"shEcho",
-    \"stylusImport",
-    \"taskpaperProject",
-    \"vimCommand",
-    \"vimLet",
-    \"pythonStatement",
-    \"pythonOperator",
-    \"pythonImport",
-    \"pythonRepeat",
     \"pythonConditional",
     \"pythonExecption",
+    \"pythonImport",
     \"pythonInclude",
+    \"pythonOperator",
     \"pythonRaiseFromStatement",
+    \"pythonRepeat",
+    \"pythonStatement",
+    \"shEcho",
     \"shFunctionKey",
+    \"stylusImport",
+    \"taskpaperProject",
+    \"typescriptAmbientDeclaration",
+    \"typescriptBOMWindowProp",
+    \"typescriptCastKeyword",
+    \"typescriptConditional",
+    \"typescriptDefault",
+    \"typescriptEnumKeyword",
+    \"typescriptExport",
+    \"typescriptIdentifierName",
+    \"typescriptImport",
+    \"typescriptKeyword",
+    \"typescriptKeywordOp",
+    \"typescriptModule",
+    \"typescriptOperator",
+    \"typescriptStatementKeyword",
+    \"typescriptVariable",
+    \"vimCommand",
+    \"vimLet",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
@@ -394,6 +422,7 @@ call s:linkGroup('RedshiftAttention', [
     \"ExtraWhitespace",
     \"JavascriptCommentTodo",
     \"NeomakeErrorMsg",
+    \"SpellBad",
     \"Todo",
 \])
 
