@@ -320,6 +320,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssVisualProp",
     \"haskellImportKeywords",
     \"haskellKeyword",
+    \"javascriptBranch",
     \"javascriptCase",
     \"javascriptConditional",
     \"javascriptConditionalElse",

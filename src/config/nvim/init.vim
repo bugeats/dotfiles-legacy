@@ -17,9 +17,9 @@ filetype off " required!
 " :PlugClean! - Remove unused directories (bang version will clean without prompt)
 
 call plug#begin('~/.config/nvim/plugged')
-
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
@@ -117,8 +117,6 @@ set shell=/bin/bash
 set shiftwidth=4                              " default to 4 spaces for indentation
 set showtabline=2                             " always show tab line
 set smartindent
-set statusline+=%=%y%m\                       " right-aligned file type [modified]
-set statusline=>>\ %f:%l:%c                   " minimal status line with file name
 set synmaxcol=160                             " Don't syntax highlight past 160 cols (perf)
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
@@ -127,6 +125,9 @@ set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to th
 set visualbell                                " don't beep
 set wildignore=*.swp,*.pyc
 
+" statusline (line below the window pane)
+set statusline=%f:%l:%c                       " minimal status line with file name
+set statusline+=%=%y%m                        " right-aligned file type [modified]
 
 let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 
@@ -186,11 +187,12 @@ let g:lmap = {}
 let g:lmap.f = { 'name' : 'Files' }
 
 nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>fed :e ~/Desktop<CR>
-nnoremap <Leader>fev :e $MYVIMRC<CR>
 nnoremap <Leader>fec :e ~/.config/nvim/colors/mine.vim<CR>
-nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
+nnoremap <Leader>fed :e ~/Desktop<CR>
 nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
+nnoremap <Leader>fes :e ~/.config/nvim/snippets<CR>
+nnoremap <Leader>fev :e $MYVIMRC<CR>
+nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
 
 " \fl to set local directory to current file path
 nnoremap <Leader>fd :lcd %:p:h<cr>
@@ -502,6 +504,28 @@ function! s:check_back_space() abort "{{{
 let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+
+
+" Neosnippets ------------------------------------------------------------------
+
+" disable all runtime snippets
+let g:neosnippet#disable_runtime_snippets = { '_' : 1,  }
+
+" only use custom snippets
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+
+imap <right>    <Plug>(neosnippet_expand_or_jump)
+smap <right>    <Plug>(neosnippet_expand_or_jump)
+xmap <right>    <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 
 " Neomake ----------------------------------------------------------------------
