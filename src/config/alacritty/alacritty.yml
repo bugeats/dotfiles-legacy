@@ -205,6 +205,9 @@ key_bindings:
   - { key: W, mods: Command, chars: "\x1bw" }
   - { key: X, mods: Command, chars: "\x1bx" }
 
+  - { key: Left,  mods: Command, chars: "\x1b[1;9D" }
+  - { key: Right, mods: Command, chars: "\x1b[1;9C" }
+
 
 # Mouse Bindings ---------------------------------------------------------------
 
