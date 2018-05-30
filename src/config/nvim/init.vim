@@ -193,6 +193,7 @@ nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
 nnoremap <Leader>fes :e ~/.config/nvim/snippets<CR>
 nnoremap <Leader>fev :e $MYVIMRC<CR>
 nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
+nnoremap <Leader>fet :call EditCurrentFileAlternate()<CR>
 
 " \fl to set local directory to current file path
 nnoremap <Leader>fd :lcd %:p:h<cr>
@@ -218,6 +219,7 @@ nnoremap <Leader>wl :wincmd l<CR>
 nnoremap <Leader>wv :wincmd v<CR> :wincmd l<CR>
 nnoremap <Leader>ws :wincmd s<CR> :wincmd j<CR>
 nnoremap <Leader>wq :wincmd q<CR>
+nnoremap <Leader>wQ :qa!<CR>
 nnoremap <Leader>wh :wincmd h<CR>
 nnoremap <Leader>wr :wincmd r<CR>
 
@@ -420,6 +422,35 @@ let g:goldenview__enable_at_startup = 1
 " dunno why GoldenView stopped init'ing at startup, but this fixes it
 autocmd VimEnter * EnableGoldenViewAutoResize
 
+" Tests Navigation -------------------------------------------------------------
+
+function! CurrentFileTestSplit()
+  exec ":only"
+  if CurrentFileIsTest()
+    exec ":leftabove vsplit " . CurrentFileAlternate()
+  else
+    exec ":rightbelow vsplit " . CurrentFileAlternate()
+  end
+  exec ":GoldenViewResize"
+endfunction
+
+function! CurrentFileIsTest()
+  return match(expand('%'), '\.test\.[^\.]\+$') != -1
+endfunction
+
+function! CurrentFileAlternate()
+  if CurrentFileIsTest()
+    return substitute(expand('%'), '\.test\.\([^\.]\+\)$', '\.\1', 'g')
+  end
+  return substitute(expand('%'), '\.\([^\.]\+\)$', '\.test\.\1', 'g')
+endfunction
+
+function! EditCurrentFileAlternate()
+  exec ":e " . CurrentFileAlternate()
+endfunction
+
+" toggle between tests and implementation with vertical splits
+nnoremap <leader>. :call CurrentFileTestSplit()<cr>
 
 " NukeUnusedBuffers() ----------------------------------------------------------
 
