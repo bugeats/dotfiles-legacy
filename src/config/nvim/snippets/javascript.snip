@@ -62,6 +62,14 @@ options word
       ${0:TARGET}
   })
 
+snippet test
+alias te tes
+options word
+  test('${1:#:#x}', async function (assert) {
+      ${0:TARGET}
+      assert.end();
+  });
+
 # Variables --------------------------------------------------------------------
 
 snippet const

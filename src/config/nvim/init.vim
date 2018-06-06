@@ -121,7 +121,9 @@ set synmaxcol=160                             " Don't syntax highlight past 160 
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
 set termguicolors                             " enable true color support
+set timeoutlen=300
 set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to the current working directory name (project name)
+set ttimeoutlen=0
 set visualbell                                " don't beep
 set wildignore=*.swp,*.pyc
 
@@ -170,175 +172,6 @@ set backspace=indent,eol,start
 map <expr> M printf('`%c zz', getchar())
 
 
-" Leader Keys ------------------------------------------------------------------
-
-" use spacebar for leader!
-let mapleader = "\<Space>"
-
-" use leader guide
-nnoremap <Leader> :<C-U>LeaderGuide ' '<CR>
-nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
-
-call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
-let g:lmap = {}
-
-" File Tasks ---------------------------
-
-let g:lmap.f = { 'name' : 'Files' }
-
-nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>fec :e ~/.config/nvim/colors/mine.vim<CR>
-nnoremap <Leader>fed :e ~/Desktop<CR>
-nnoremap <Leader>fel :e ~/Dropbox/Apps/Editorial/life.taskpaper<CR>
-nnoremap <Leader>fes :e ~/.config/nvim/snippets<CR>
-nnoremap <Leader>fev :e $MYVIMRC<CR>
-nnoremap <Leader>few :e ~/Dropbox/Apps/Editorial/work.taskpaper<CR>
-nnoremap <Leader>fet :call EditCurrentFileAlternate()<CR>
-
-" \fl to set local directory to current file path
-nnoremap <Leader>fd :lcd %:p:h<cr>
-
-let g:lmap.f.l = { 'name' : 'List' }
-
-let g:lmap.f.l.m = ['Unite git_modified', 'Modified (git)']
-let g:lmap.f.l.c = ['Unite git_cached', 'Cached (git)']
-let g:lmap.f.l.u = ['Unite git_untracked', 'Untracked (git)']
-
-let g:lmap.f.r = { 'name' : 'Read' }
-let g:lmap.f.r.v = ['so $MYVIMRC', 'vimrc']
-
-
-
-" Window Tasks -------------------------
-
-let g:lmap.w = { 'name' : 'Windows' }
-
-nnoremap <Leader>wj :wincmd j<CR>
-nnoremap <Leader>wk :wincmd k<CR>
-nnoremap <Leader>wl :wincmd l<CR>
-nnoremap <Leader>wv :wincmd v<CR> :wincmd l<CR>
-nnoremap <Leader>ws :wincmd s<CR> :wincmd j<CR>
-nnoremap <Leader>wq :wincmd q<CR>
-nnoremap <Leader>wQ :qa!<CR>
-nnoremap <Leader>wh :wincmd h<CR>
-nnoremap <Leader>wr :wincmd r<CR>
-
-" (w)indow-(d)elete
-nnoremap <Leader>wd :wincmd q<CR>
-" (w)indow-(m)aximize
-nnoremap <Leader>wm :only<CR>
-" (w)indow-(f)ocus
-nnoremap <Leader>wf :only<CR>:NERDTreeFind<CR>:wincmd l<CR>:GoldenViewResize<CR>
-
-let g:lmap.w.z = ['GoldenViewResize', 'Resize']
-
-
-" Navigation ---------------------------
-
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-
-
-" Tab Tasks ----------------------------
-
-let g:lmap.t = { 'name' : 'Tabs' }
-
-nnoremap <Leader>1 :tabn 1<CR>
-nnoremap <Leader>2 :tabn 2<CR>
-nnoremap <Leader>3 :tabn 3<CR>
-nnoremap <Leader>4 :tabn 4<CR>
-nnoremap <Leader>5 :tabn 5<CR>
-nnoremap <Leader>6 :tabn 6<CR>
-nnoremap <Leader>7 :tabn 7<CR>
-nnoremap <Leader>8 :tabn 8<CR>
-nnoremap <Leader>9 :tabn 9<CR>
-
-nnoremap <Leader>td  :tabclose<CR>
-nnoremap <Leader>th  :tabnext<CR>
-nnoremap <Leader>tj  :tabnext<CR>
-nnoremap <Leader>tk  :tabprev<CR>
-nnoremap <Leader>tl  :tabprev<CR>
-nnoremap <Leader>tm  :tabm<Space>
-nnoremap <Leader>tn  :tabnew<CR>
-nnoremap <Leader>tt  :tabedit<Space>
-" tf 'tab floor' move the current tab all the way left
-nnoremap <Leader>tf :tabm 0<CR>
-
-nnoremap <Leader>t1  :tabn 1<CR>
-nnoremap <Leader>t2  :tabn 2<CR>
-nnoremap <Leader>t3  :tabn 3<CR>
-nnoremap <Leader>t4  :tabn 4<CR>
-nnoremap <Leader>t5  :tabn 5<CR>
-nnoremap <Leader>t6  :tabn 6<CR>
-nnoremap <Leader>t7  :tabn 7<CR>
-nnoremap <Leader>t8  :tabn 8<CR>
-nnoremap <Leader>t9  :tabn 9<CR>
-
-
-" Make Tasks ---------------------------
-
-" \m to 'make' save changes / reload REPL, switch to browser
-autocmd FileType clojure    nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-autocmd FileType pug        nnoremap <Leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-autocmd FileType javascript nnoremap <Leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-
-
-" Lint Tasks ---------------------------
-
-" neomake open location window
-nnoremap <Leader>lo :lopen<CR>
-" neomake close location window
-nnoremap <Leader>lc :lclose<CR>
-" neomake go to current error/warning
-nnoremap <Leader>ll :ll<CR>
-" neomake next error/warning
-nnoremap <Leader>ln :lnext<CR>
-" neomake previous error/warning
-nnoremap <Leader>lp :lprev<CR>
-
-
-" \q ever so slightly faster quit command
-nnoremap <Leader>q :q<CR>
-
-" \d show/hide NerdTree
-nnoremap <Leader>d :NERDTreeToggle<cr>
-
-" \p to show fuzzy search
-nnoremap <Leader>p :CtrlP<cr>
-
-" \P clear fuzzy search cache
-nnoremap <Leader>P :CtrlPClearCache<cr>
-
-" global search with Ag
-nnoremap <Leader>/ :Ag<space>
-
-" dup a line/selection, with commented version above <-- this is awesome
-vnoremap <Leader>c y gv :TComment<cr> gv<Esc> p
-nnoremap <Leader>c V y gv :TComment<cr> gv<Esc> p
-
-" <Leader>; auto append semicolon (or comma)
-nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
-
-" j - insert blank line below
-nnoremap <silent> <Leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
-" k - insert blank line above
-nnoremap <silent> <Leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" Nuke buffers that are not visible
-nnoremap <Leader>n :call NukeUnusedBuffers()<CR>
-
-" \ts skip tests
-nnoremap <Leader>ts :%s/test(/test.skip(/g<CR>
-
-" \tu unskip tests
-nnoremap <Leader>tu :%s/test.skip(/test(/g<CR>
-
-" \r to reload REPL and show last REPL message (Clojure only right now)
-nnoremap <Leader>r :Require<CR>
-
-" \b to open web browser
-nnoremap <Leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
-
 " Movement ---------------------------------------------------------------------
 
 " j/k moves even for a wrapping line
@@ -376,6 +209,10 @@ augroup filetypes
     autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
     autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
     autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
+augroup END
+
+augroup filetypedetect
+    au BufRead,BufNewFile *.js set filetype=javascript
 augroup END
 
 " No git-gutter for taskpaper files
@@ -449,8 +286,6 @@ function! EditCurrentFileAlternate()
   exec ":e " . CurrentFileAlternate()
 endfunction
 
-" toggle between tests and implementation with vertical splits
-nnoremap <leader>. :call CurrentFileTestSplit()<cr>
 
 " NukeUnusedBuffers() ----------------------------------------------------------
 
@@ -620,6 +455,172 @@ colorscheme mine
 let g:parinfer_preview_cursor_scope = 1
 autocmd FileType clojure     set cursorcolumn
 
+" LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER L
+" R LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER
+" DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
+" ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
+
+" use spacebar for leader!
+let mapleader = "\<Space>"
+
+" use leader guide
+nnoremap <leader> :<C-U>LeaderGuide ' '<CR>
+nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
+
+call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
+let g:lmap = {}
+
+" File Tasks ---------------------------
+
+" toggle between tests and implementation with vertical splits
+nnoremap <leader>. :call CurrentFileTestSplit()<cr>
+
+let g:lmap.f     = { 'name' : 'File' }
+let g:lmap.f.s   = [':w', 'Save']
+let g:lmap.f.d   = [':lcd %:p:h', 'Director to Current File Path']
+
+let g:lmap.f.e   = { 'name' : 'Edit' }
+let g:lmap.f.e.c = [':e ~/.config/nvim/colors/mine.vim', 'Colors']
+let g:lmap.f.e.d = [':e ~/Desktop', 'Desktop']
+let g:lmap.f.e.s = [':e ~/.config/nvim/snippets', 'Snippts']
+let g:lmap.f.e.v = [':e $MYVIMRC', 'vimrc']
+let g:lmap.f.e.t = [':call EditCurrentFileAlternate()', 'Test']
+
+let g:lmap.f.c   = { 'name' : 'Copy' }
+let g:lmap.f.c.p = ['let @+ = expand("%:p") | echo @+', 'Current File Path']
+let g:lmap.f.c.r = ['let @+ = expand("%") | echo @+', 'Current File Relative Path']
+
+let g:lmap.f.l   = { 'name' : 'List' }
+let g:lmap.f.l.m = ['Unite git_modified', 'Modified (git)']
+let g:lmap.f.l.c = ['Unite git_cached', 'Cached (git)']
+let g:lmap.f.l.u = ['Unite git_untracked', 'Untracked (git)']
+
+let g:lmap.f.r   = { 'name' : 'Read' }
+let g:lmap.f.r.v = ['so $MYVIMRC', 'vimrc']
+
+" Window Tasks -------------------------
+
+let g:lmap.w = { 'name' : 'Windows' }
+let g:lmap.w.F = ['only | NERDTreeFind | wincmd l | Goyo', 'Hard Focus Window']
+let g:lmap.w.Q = [':qa!', 'Quit Hard']
+let g:lmap.w.d = ['wincmd d', 'Delete']
+let g:lmap.w.f = ['only | NERDTreeFind | wincmd l | GoldenViewResize', 'Focus Window']
+let g:lmap.w.h = [':wincmd h', 'Nav Left']
+let g:lmap.w.j = [':wincmd j', 'Nav Down']
+let g:lmap.w.k = [':wincmd k', 'Nav Up']
+let g:lmap.w.l = [':wincmd l', 'Nav Right']
+let g:lmap.w.m = [':only', 'Maximize']
+let g:lmap.w.q = [':wincmd q', 'Quit']
+let g:lmap.w.q = ['wincmd d', 'Delete']
+let g:lmap.w.r = [':wincmd r', 'Rotate']
+let g:lmap.w.s = [':wincmd s | wincmd j', 'Horizontal Split']
+let g:lmap.w.v = [':wincmd v | wincmd l', 'Vertical Split']
+let g:lmap.w.z = ['GoldenViewResize', 'Resize Window']
+
+" Tab Tasks ----------------------------
+
+let g:lmap.t = { 'name' : 'Tabs' }
+
+nnoremap <leader>1 :tabn 1<CR>
+nnoremap <leader>2 :tabn 2<CR>
+nnoremap <leader>3 :tabn 3<CR>
+nnoremap <leader>4 :tabn 4<CR>
+nnoremap <leader>5 :tabn 5<CR>
+nnoremap <leader>6 :tabn 6<CR>
+nnoremap <leader>7 :tabn 7<CR>
+nnoremap <leader>8 :tabn 8<CR>
+nnoremap <leader>9 :tabn 9<CR>
+
+nnoremap <leader>td  :tabclose<CR>
+nnoremap <leader>th  :tabnext<CR>
+nnoremap <leader>tj  :tabnext<CR>
+nnoremap <leader>tk  :tabprev<CR>
+nnoremap <leader>tl  :tabprev<CR>
+nnoremap <leader>tm  :tabm<Space>
+nnoremap <leader>tn  :tabnew<CR>
+nnoremap <leader>tt  :tabedit<Space>
+" tf 'tab floor' move the current tab all the way left
+nnoremap <leader>tf :tabm 0<CR>
+
+nnoremap <leader>t1  :tabn 1<CR>
+nnoremap <leader>t2  :tabn 2<CR>
+nnoremap <leader>t3  :tabn 3<CR>
+nnoremap <leader>t4  :tabn 4<CR>
+nnoremap <leader>t5  :tabn 5<CR>
+nnoremap <leader>t6  :tabn 6<CR>
+nnoremap <leader>t7  :tabn 7<CR>
+nnoremap <leader>t8  :tabn 8<CR>
+nnoremap <leader>t9  :tabn 9<CR>
+
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+
+" Make Tasks ---------------------------
+
+" \m to 'make' save changes / reload REPL, switch to browser
+autocmd FileType clojure    nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType pug        nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType javascript nnoremap <leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+
+
+" Lint Tasks ---------------------------
+
+" neomake open location window
+nnoremap <leader>lo :lopen<CR>
+" neomake close location window
+nnoremap <leader>lc :lclose<CR>
+" neomake go to current error/warning
+nnoremap <leader>ll :ll<CR>
+" neomake next error/warning
+nnoremap <leader>ln :lnext<CR>
+" neomake previous error/warning
+nnoremap <leader>lp :lprev<CR>
+
+
+" \q ever so slightly faster quit command
+nnoremap <leader>q :q<CR>
+
+" \d show/hide NerdTree
+nnoremap <leader>d :NERDTreeToggle<cr>
+
+" \p to show fuzzy search
+nnoremap <leader>p :CtrlP<cr>
+
+" \P clear fuzzy search cache
+nnoremap <leader>P :CtrlPClearCache<cr>
+
+" global search with Ag
+nnoremap <leader>/ :Ag<space>
+
+" dup a line/selection, with commented version above <-- this is awesome
+vnoremap <leader>c y gv :TComment<cr> gv<Esc> p
+nnoremap <leader>c V y gv :TComment<cr> gv<Esc> p
+
+" <leader>; auto append semicolon (or comma)
+nnoremap <silent> <leader>; :call cosco#commaOrSemiColon()<CR>
+
+" j - insert blank line below
+nnoremap <silent> <leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
+" k - insert blank line above
+nnoremap <silent> <leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" Nuke buffers that are not visible
+nnoremap <leader>n :call NukeUnusedBuffers()<CR>
+
+" \ts skip tests
+nnoremap <leader>ts :%s/test(/test.skip(/g<CR>
+
+" \tu unskip tests
+nnoremap <leader>tu :%s/test.skip(/test(/g<CR>
+
+" \r to reload REPL and show last REPL message (Clojure only right now)
+nnoremap <leader>r :Require<CR>
+
+" \b to open web browser
+nnoremap <leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
+
+" \B to open chrome
+nnoremap <leader>B :!open /Applications/Google\ Chrome.app<CR>
 
 " ------------------------------------------------------------------------------
 "
