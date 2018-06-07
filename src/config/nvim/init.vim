@@ -30,7 +30,6 @@ Plug 'davidoc/taskpaper.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
-Plug 'hecal3/vim-leader-guide'
 Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -455,71 +454,64 @@ colorscheme mine
 let g:parinfer_preview_cursor_scope = 1
 autocmd FileType clojure     set cursorcolumn
 
+" Leader -----------------------------------------------------------------------
+
+" use spacebar for leader!
+let mapleader = "\<Space>"
+
 " LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER L
 " R LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER
 " DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
 " ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
 
-" use spacebar for leader!
-let mapleader = "\<Space>"
-
-" use leader guide
-nnoremap <leader> :<C-U>LeaderGuide ' '<CR>
-nnoremap <localleader> :<C-U>LeaderGuide ','<CR>
-
-call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
-let g:lmap = {}
-
 " File Tasks ---------------------------
 
 " toggle between tests and implementation with vertical splits
-nnoremap <leader>. :call CurrentFileTestSplit()<cr>
+nnoremap <leader>ft :call CurrentFileTestSplit()<cr>
 
-let g:lmap.f     = { 'name' : 'File' }
-let g:lmap.f.s   = [':w', 'Save']
-let g:lmap.f.d   = [':lcd %:p:h', 'Director to Current File Path']
+nnoremap <leader>fs :w<cr>
+nnoremap <leader>fd :lcd %:p:h<cr>
+nnoremap <leader>fec :e ~/.config/nvim/colors/mine.vim<cr>
+nnoremap <leader>fed :e ~/Desktop<cr>
+nnoremap <leader>fes :e ~/.config/nvim/snippets<cr>
+nnoremap <leader>fev :e $MYVIMRC<cr>
+nnoremap <leader>fet :call EditCurrentFileAlternate()<cr>
 
-let g:lmap.f.e   = { 'name' : 'Edit' }
-let g:lmap.f.e.c = [':e ~/.config/nvim/colors/mine.vim', 'Colors']
-let g:lmap.f.e.d = [':e ~/Desktop', 'Desktop']
-let g:lmap.f.e.s = [':e ~/.config/nvim/snippets', 'Snippts']
-let g:lmap.f.e.v = [':e $MYVIMRC', 'vimrc']
-let g:lmap.f.e.t = [':call EditCurrentFileAlternate()', 'Test']
+" copy current file path
+nnoremap <leader>fcp let @+ = expand("%:p")<cr>:echo @+<cr>
+" copy current file relative path
+nnoremap <leader>fcr let @+ = expand("%")<cr>:echo @+<cr>
 
-let g:lmap.f.c   = { 'name' : 'Copy' }
-let g:lmap.f.c.p = ['let @+ = expand("%:p") | echo @+', 'Current File Path']
-let g:lmap.f.c.r = ['let @+ = expand("%") | echo @+', 'Current File Relative Path']
+" list git modified files
+nnoremap <leader>flm :Unite git_modified<cr>
+" list git cached files
+nnoremap <leader>flc :Unite git_cached<cr>
+" list git untracked files
+nnoremap <leader>flu :Unite git_untracked<cr>
 
-let g:lmap.f.l   = { 'name' : 'List' }
-let g:lmap.f.l.m = ['Unite git_modified', 'Modified (git)']
-let g:lmap.f.l.c = ['Unite git_cached', 'Cached (git)']
-let g:lmap.f.l.u = ['Unite git_untracked', 'Untracked (git)']
-
-let g:lmap.f.r   = { 'name' : 'Read' }
-let g:lmap.f.r.v = ['so $MYVIMRC', 'vimrc']
+" re-read vim config
+nnoremap <leader>frv :so $MYVIMRC<cr>
 
 " Window Tasks -------------------------
 
-let g:lmap.w = { 'name' : 'Windows' }
-let g:lmap.w.F = ['only | NERDTreeFind | wincmd l | Goyo', 'Hard Focus Window']
-let g:lmap.w.Q = [':qa!', 'Quit Hard']
-let g:lmap.w.d = ['wincmd d', 'Delete']
-let g:lmap.w.f = ['only | NERDTreeFind | wincmd l | GoldenViewResize', 'Focus Window']
-let g:lmap.w.h = [':wincmd h', 'Nav Left']
-let g:lmap.w.j = [':wincmd j', 'Nav Down']
-let g:lmap.w.k = [':wincmd k', 'Nav Up']
-let g:lmap.w.l = [':wincmd l', 'Nav Right']
-let g:lmap.w.m = [':only', 'Maximize']
-let g:lmap.w.q = [':wincmd q', 'Quit']
-let g:lmap.w.q = ['wincmd d', 'Delete']
-let g:lmap.w.r = [':wincmd r', 'Rotate']
-let g:lmap.w.s = [':wincmd s | wincmd j', 'Horizontal Split']
-let g:lmap.w.v = [':wincmd v | wincmd l', 'Vertical Split']
-let g:lmap.w.z = ['GoldenViewResize', 'Resize Window']
+nnoremap <leader>wF :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
+nnoremap <leader>wQ :qa!<cr>
+nnoremap <leader>wd :wincmd d<cr>
+nnoremap <leader>wq :wincmd d<cr>
+nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
+nnoremap <leader>wh :wincmd h<cr>
+nnoremap <leader>wj :wincmd j<cr>
+nnoremap <leader>wk :wincmd k<cr>
+nnoremap <leader>wl :wincmd l<cr>
+nnoremap <leader>wm :only<cr>
+nnoremap <leader>wq :wincmd q<cr>
+nnoremap <leader>wq wincmd d<cr>
+nnoremap <leader>wr :wincmd r<cr>
+nnoremap <leader>ws :wincmd s<cr>:wincmd j<cr>
+nnoremap <leader>wv :wincmd v<cr>:wincmd l<cr>
+nnoremap <leader>wz :GoldenViewResize<cr>
 
 " Tab Tasks ----------------------------
-
-let g:lmap.t = { 'name' : 'Tabs' }
 
 nnoremap <leader>1 :tabn 1<CR>
 nnoremap <leader>2 :tabn 2<CR>
@@ -576,6 +568,7 @@ nnoremap <leader>ln :lnext<CR>
 " neomake previous error/warning
 nnoremap <leader>lp :lprev<CR>
 
+" Misc Tasks ---------------------------
 
 " \q ever so slightly faster quit command
 nnoremap <leader>q :q<CR>
