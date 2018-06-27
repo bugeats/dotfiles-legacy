@@ -17,6 +17,7 @@ filetype off " required!
 " :PlugClean! - Remove unused directories (bang version will clean without prompt)
 
 call plug#begin('~/.config/nvim/plugged')
+
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
@@ -36,7 +37,6 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
-Plug 'lfilho/cosco.vim' " Comma and semi-colon insertion bliss for vim.
 Plug 'mkitt/tabline.vim'
 Plug 'neomake/neomake'
 Plug 'neovim/node-host'
@@ -120,9 +120,9 @@ set synmaxcol=160                             " Don't syntax highlight past 160 
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
 set termguicolors                             " enable true color support
-set timeoutlen=300
+set timeoutlen=500                            " Time in milliseconds to wait for a mapped sequence to complete.
 set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to the current working directory name (project name)
-set ttimeoutlen=0
+set ttimeoutlen=50                            " Time in milliseconds to wait for a key code sequence to complete.
 set visualbell                                " don't beep
 set wildignore=*.swp,*.pyc
 
@@ -478,9 +478,9 @@ nnoremap <leader>fev :e $MYVIMRC<cr>
 nnoremap <leader>fet :call EditCurrentFileAlternate()<cr>
 
 " copy current file path
-nnoremap <leader>fcp let @+ = expand("%:p")<cr>:echo @+<cr>
+nnoremap <leader>fcp :let @+ = expand("%:p")<cr>:echo @+<cr>
 " copy current file relative path
-nnoremap <leader>fcr let @+ = expand("%")<cr>:echo @+<cr>
+nnoremap <leader>fcr :let @+ = expand("%")<cr>:echo @+<cr>
 
 " list git modified files
 nnoremap <leader>flm :Unite git_modified<cr>
@@ -488,6 +488,7 @@ nnoremap <leader>flm :Unite git_modified<cr>
 nnoremap <leader>flc :Unite git_cached<cr>
 " list git untracked files
 nnoremap <leader>flu :Unite git_untracked<cr>
+nnoremap <leader>fln :Unite git_untracked<cr>
 
 " re-read vim config
 nnoremap <leader>frv :so $MYVIMRC<cr>
@@ -496,8 +497,7 @@ nnoremap <leader>frv :so $MYVIMRC<cr>
 
 nnoremap <leader>wF :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
 nnoremap <leader>wQ :qa!<cr>
-nnoremap <leader>wd :wincmd d<cr>
-nnoremap <leader>wq :wincmd d<cr>
+nnoremap <leader>wd :q<cr>
 nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
 nnoremap <leader>wh :wincmd h<cr>
 nnoremap <leader>wj :wincmd j<cr>
@@ -510,6 +510,10 @@ nnoremap <leader>wr :wincmd r<cr>
 nnoremap <leader>ws :wincmd s<cr>:wincmd j<cr>
 nnoremap <leader>wv :wincmd v<cr>:wincmd l<cr>
 nnoremap <leader>wz :GoldenViewResize<cr>
+
+" NERDTree Tasks -----------------------
+
+nnoremap <leader>nf :NERDTreeFind<cr>
 
 " Tab Tasks ----------------------------
 
@@ -570,6 +574,11 @@ nnoremap <leader>lp :lprev<CR>
 
 " Misc Tasks ---------------------------
 
+" \; auto append semicolon
+nnoremap <silent> <leader>; meA;<Esc>`e
+" \; auto append comma
+nnoremap <silent> <leader>, meA,<Esc>`e
+
 " \q ever so slightly faster quit command
 nnoremap <leader>q :q<CR>
 
@@ -588,9 +597,6 @@ nnoremap <leader>/ :Ag<space>
 " dup a line/selection, with commented version above <-- this is awesome
 vnoremap <leader>c y gv :TComment<cr> gv<Esc> p
 nnoremap <leader>c V y gv :TComment<cr> gv<Esc> p
-
-" <leader>; auto append semicolon (or comma)
-nnoremap <silent> <leader>; :call cosco#commaOrSemiColon()<CR>
 
 " j - insert blank line below
 nnoremap <silent> <leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
