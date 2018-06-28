@@ -395,13 +395,16 @@ endif
 
 " Neomake ----------------------------------------------------------------------
 
+call neomake#configure#automake('nrwi', 500)
+
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_pug_enabled_makers = ['puglint']
-
+"
 let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
 let g:neomake_error_sign={'texthl': 'NeomakeErrorMsg'}
 
-autocmd! BufWritePost * Neomake
+" let g:neomake_verbose=3
+" autocmd! BufWritePost * Neomake
 
 
 " Supertab ---------------------------------------------------------------------
