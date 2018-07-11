@@ -133,6 +133,9 @@ set wildignore=*.swp,*.pyc
 set statusline=%f:%l:%c                       " minimal status line with file name
 set statusline+=%=%y%m                        " right-aligned file type [modified]
 
+" vertical cursor for insert mode
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+
 let g:netrw_dirhistmax = 0    " no .netrwhist turds please
 
 " never try to automatically insert commented new lines
@@ -523,7 +526,7 @@ nnoremap <leader>frv :so $MYVIMRC<cr>
 
 " (w)indow (f)ocus
 nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
-" (w)indow (F)ocus!
+" (w)indow (F)ocus
 nnoremap <leader>wF :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
 nnoremap <leader>wQ :qa!<cr>
 nnoremap <leader>wd :q<cr>

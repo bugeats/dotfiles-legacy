@@ -78,6 +78,9 @@ font:
 
 background_opacity: 1.0
 
+# Use custom cursor colors. If true, display the cursor in the cursor.foreground and cursor.background colors, otherwise invert the colors of the cursor.
+custom_cursor_colors: true
+
 colors:
   primary:
     background: '0x272524'
@@ -85,8 +88,8 @@ colors:
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x000000'
-    cursor: '0xffffff'
+    text:   '0x403c3a'
+    cursor: '0xe6a4be'
 
   normal:
     black:   '0x5f5955'
@@ -223,9 +226,6 @@ selection:
 
 
 # Other ------------------------------------------------------------------------
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
 
 hide_cursor_when_typing: false
 

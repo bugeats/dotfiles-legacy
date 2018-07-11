@@ -23,7 +23,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export EDITOR="/usr/local/bin/nvim -f"
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export TERM="screen-256color"
+# This will force Neovim use 24 bit colors
+# export TERM="screen-256color"
 
 
 # Node -------------------------------------------------------------------------
