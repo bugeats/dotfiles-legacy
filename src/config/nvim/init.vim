@@ -18,6 +18,12 @@ filetype off " required!
 
 call plug#begin('~/.config/nvim/plugged')
 
+" Language Server Client
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'do': 'bash install.sh; npm install -g javascript-typescript-langserver',
+    \ 'branch': 'next' }
+
+" Core / UI
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
@@ -25,64 +31,61 @@ Plug 'Shougo/unite.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
-Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'davidoc/taskpaper.vim'
-Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elzr/vim-json'
-Plug 'henrik/vim-indexed-search'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'kassio/neoterm'
 Plug 'mkitt/tabline.vim'
-Plug 'bugeats/neomake'
+Plug 'neomake/neomake', { 'do': 'npm install -g eslint' }
 Plug 'neovim/node-host'
-Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
 Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'wavded/vim-stylus'
 Plug 'yuku-t/unite-git'
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'zhaocai/GoldenView.Vim'
 
+" Misc Language
+Plug 'elzr/vim-json',             { 'for': ['json'] }
+Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
+Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
+Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
+Plug 'tpope/vim-markdown',        { 'for': ['markdown'] }
+Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
+Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+
 " Javascript Plugins
+Plug 'HerringtonDarkholme/yats.vim' " typescript syntax highlighting
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
 Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 
-" Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
-Plug 'HerringtonDarkholme/yats.vim'
-
 " Clojure Plugins
-Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
-Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
-Plug 'snoe/nvim-parinfer.js',      { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-classpath',        { 'for': ['clojure'] }
-Plug 'tpope/vim-dispatch',         { 'for': ['clojure'] }
-Plug 'tpope/vim-fireplace',        { 'for': ['clojure'] }
-Plug 'tpope/vim-projectionist',    { 'for': ['clojure'] }
-Plug 'tpope/vim-salve',            { 'for': ['clojure'] }
-Plug 'venantius/vim-cljfmt',       { 'for': ['clojure'] }
-Plug 'venantius/vim-eastwood',     { 'for': ['clojure'] }
+" Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
+" Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
+" Plug 'snoe/nvim-parinfer.js',      { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
+" Plug 'tpope/vim-classpath',        { 'for': ['clojure'] }
+" Plug 'tpope/vim-dispatch',         { 'for': ['clojure'] }
+" Plug 'tpope/vim-fireplace',        { 'for': ['clojure'] }
+" Plug 'tpope/vim-projectionist',    { 'for': ['clojure'] }
+" Plug 'tpope/vim-salve',            { 'for': ['clojure'] }
+" Plug 'venantius/vim-cljfmt',       { 'for': ['clojure'] }
+" Plug 'venantius/vim-eastwood',     { 'for': ['clojure'] }
 
-" Haskell Plugins
-Plug 'neovimhaskell/haskell-vim',  { 'for': ['haskell'] }
-
-" Python Plugins
-" Plug 'hdima/python-syntax',  { 'for': ['python'] }
-Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+" Maybes
+" Plug 'yuttie/comfortable-motion.vim'
+" Plug 'tpope/vim-unimpaired'
+" Plug 'kassio/neoterm'
+" Plug 'henrik/vim-indexed-search'
+" Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 call plug#end()
 
@@ -218,6 +221,18 @@ augroup END
 autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
 let g:vim_json_syntax_conceal = 0
+
+" Language Server Protocol Client ----------------------------------------------
+
+" :help LanguageClient
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'python': ['pyls'],
+    \ }
 
 " Fuzzy Search -----------------------------------------------------------------
 
@@ -428,13 +443,9 @@ endif
 au TermOpen * setlocal nonumber norelativenumber
 
 
-" Neoterm ----------------------------------------------------------------------
-
-let g:neoterm_shell = "bash"
-
 " Color Scheme -----------------------------------------------------------------
 
-" Show syntax highlighting groups for word under cursor (ctrl-s)
+" CTRL-S show syntax highlighting groups for word under cursor
 nmap <C-S> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
@@ -457,6 +468,12 @@ colorscheme mine
 let g:parinfer_preview_cursor_scope = 1
 autocmd FileType clojure     set cursorcolumn
 
+" Misc Stuff -------------------------------------------------------------------
+
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+
+
 " Leader -----------------------------------------------------------------------
 
 " use spacebar for leader!
@@ -466,6 +483,10 @@ let mapleader = "\<Space>"
 " R LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER
 " DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
 " ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
+
+" Language Tasks -----------------------
+
+nnoremap <leader>xc :call LanguageClient_contextMenu()<cr>
 
 " File Tasks ---------------------------
 
@@ -498,12 +519,14 @@ nnoremap <leader>fln :Unite git_untracked<cr>
 " re-read vim config
 nnoremap <leader>frv :so $MYVIMRC<cr>
 
-" Window Tasks -------------------------
+" (w)indow tasks -------------------------
 
+" (w)indow (f)ocus
+nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
+" (w)indow (F)ocus!
 nnoremap <leader>wF :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
 nnoremap <leader>wQ :qa!<cr>
 nnoremap <leader>wd :q<cr>
-nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
 nnoremap <leader>wh :wincmd h<cr>
 nnoremap <leader>wj :wincmd j<cr>
 nnoremap <leader>wk :wincmd k<cr>
@@ -514,13 +537,16 @@ nnoremap <leader>wq wincmd d<cr>
 nnoremap <leader>wr :wincmd r<cr>
 nnoremap <leader>ws :wincmd s<cr>:wincmd j<cr>
 nnoremap <leader>wv :wincmd v<cr>:wincmd l<cr>
+" (w)indow resi(z)e
 nnoremap <leader>wz :GoldenViewResize<cr>
 
-" NERDTree Tasks -----------------------
+
+" (n)ERDTree tasks -----------------------
 
 nnoremap <leader>nf :NERDTreeFind<cr>
 
-" Tab Tasks ----------------------------
+
+" (t)ab tasks ----------------------------
 
 nnoremap <leader>1 :tabn 1<CR>
 nnoremap <leader>2 :tabn 2<CR>
@@ -540,6 +566,7 @@ nnoremap <leader>tl  :tabprev<CR>
 nnoremap <leader>tm  :tabm<Space>
 nnoremap <leader>tn  :tabnew<CR>
 nnoremap <leader>tt  :tabedit<Space>
+
 " tf 'tab floor' move the current tab all the way left
 nnoremap <leader>tf :tabm 0<CR>
 
@@ -553,10 +580,7 @@ nnoremap <leader>t7  :tabn 7<CR>
 nnoremap <leader>t8  :tabn 8<CR>
 nnoremap <leader>t9  :tabn 9<CR>
 
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-
-" Make Tasks ---------------------------
+" (m)ake tasks ---------------------------
 
 " \m to 'make' save changes / reload REPL, switch to browser
 autocmd FileType clojure    nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
@@ -577,54 +601,55 @@ nnoremap <leader>ln :lnext<CR>
 " neomake previous error/warning
 nnoremap <leader>lp :lprev<CR>
 
+" Buffer Tasks -------------------------
+
+" (b)(n) nuke buffers that are not visible
+nnoremap <leader>bn :call NukeUnusedBuffers()<CR>
+" (b)(l) list buffers in Buffergator
+nnoremap <leader>bl :BuffergatorOpen<CR>
+
+
+" eXternal Tasks -----------------------
+
+" \xb to open web browser
+nnoremap <leader>xb :!open /Applications/Google\ Chrome\ Canary.app<CR>
+" \xB to open chrome
+nnoremap <leader>xB :!open /Applications/Google\ Chrome.app<CR>
+" \xs to open Spotify
+nnoremap <leader>xs :!open /Applications/Spotify.app<CR>
+
+
 " Misc Tasks ---------------------------
-
-" \; auto append semicolon
-nnoremap <silent> <leader>; meA;<Esc>`e
-" \; auto append comma
-nnoremap <silent> <leader>, meA,<Esc>`e
-
-" \q ever so slightly faster quit command
-nnoremap <leader>q :q<CR>
-
-" \d show/hide NerdTree
-nnoremap <leader>d :NERDTreeToggle<cr>
-
-" \p to show fuzzy search
-nnoremap <leader>p :CtrlP<cr>
-
-" \P clear fuzzy search cache
-nnoremap <leader>P :CtrlPClearCache<cr>
 
 " global search with Ag
 nnoremap <leader>/ :Ag<space>
-
+" \; auto append semicolon
+nnoremap <silent> <leader>; meA;<Esc>`e
+" \, auto append comma
+nnoremap <silent> <leader>, meA,<Esc>`e
+" \q ever so slightly faster quit command
+nnoremap <leader>q :q<CR>
+" \Q quit hard!
+nnoremap <leader>Q :qa!<CR>
+" \d show/hide NerdTree
+nnoremap <leader>d :NERDTreeToggle<cr>
+" \p to show fuzzy search
+nnoremap <leader>p :CtrlP<cr>
+" \P clear fuzzy search cache
+nnoremap <leader>P :CtrlPClearCache<cr>
 " dup a line/selection, with commented version above <-- this is awesome
 vnoremap <leader>c y gv :TComment<cr> gv<Esc> p
 nnoremap <leader>c V y gv :TComment<cr> gv<Esc> p
-
 " j - insert blank line below
 nnoremap <silent> <leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
 nnoremap <silent> <leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" Nuke buffers that are not visible
-nnoremap <leader>n :call NukeUnusedBuffers()<CR>
-
 " \ts skip tests
 nnoremap <leader>ts :%s/test(/test.skip(/g<CR>
-
 " \tu unskip tests
 nnoremap <leader>tu :%s/test.skip(/test(/g<CR>
-
 " \r to reload REPL and show last REPL message (Clojure only right now)
 nnoremap <leader>r :Require<CR>
-
-" \b to open web browser
-nnoremap <leader>b :!open /Applications/Google\ Chrome\ Canary.app<CR>
-
-" \B to open chrome
-nnoremap <leader>B :!open /Applications/Google\ Chrome.app<CR>
 
 " ------------------------------------------------------------------------------
 "
