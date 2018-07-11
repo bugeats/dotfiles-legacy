@@ -38,7 +38,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kassio/neoterm'
 Plug 'mkitt/tabline.vim'
-Plug 'neomake/neomake'
+Plug 'bugeats/neomake'
 Plug 'neovim/node-host'
 Plug 'nono/vim-handlebars'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
@@ -62,7 +62,7 @@ Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 
-Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+" Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 Plug 'HerringtonDarkholme/yats.vim'
 
 " Clojure Plugins
@@ -397,7 +397,7 @@ endif
 
 call neomake#configure#automake('nrwi', 500)
 
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint_d']
 let g:neomake_pug_enabled_makers = ['puglint']
 "
 let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
@@ -484,6 +484,8 @@ nnoremap <leader>fet :call EditCurrentFileAlternate()<cr>
 nnoremap <leader>fcp :let @+ = expand("%:p")<cr>:echo @+<cr>
 " copy current file relative path
 nnoremap <leader>fcr :let @+ = expand("%")<cr>:echo @+<cr>
+" copy current file relative path with 'tape' prefix
+nnoremap <leader>fct :let @+ = "tape ".expand("%")<cr>:echo @+<cr>
 
 " list git modified files
 nnoremap <leader>flm :Unite git_modified<cr>
