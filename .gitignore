@@ -1,11 +1,12 @@
 .DS_Store
+src/config/configstore
+src/config/fish
+src/config/gtk-2.0
+src/config/heroku
 src/config/nvim/autoload/
 src/config/nvim/plugged/
-src/config/nvim/spell/
 src/config/nvim/shada/
-src/config/fish
-src/config/configstore
-src/config/gtk-2.0
+src/config/nvim/spell/
 src/config/nyaovim
-src/config/heroku
+src/config/oni
 src/tmux

@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Language Server Client
 Plug 'autozimu/LanguageClient-neovim', {
+    \ 'for': ['typescript'],
     \ 'do': 'bash install.sh; npm install -g javascript-typescript-langserver',
     \ 'branch': 'next' }
 
