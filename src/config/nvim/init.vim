@@ -18,12 +18,6 @@ filetype off " required!
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Language Server Client
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'for': ['typescript'],
-    \ 'do': 'bash install.sh; npm install -g javascript-typescript-langserver',
-    \ 'branch': 'next' }
-
 " Core / UI
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -63,7 +57,6 @@ Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 
 " Javascript Plugins
-Plug 'HerringtonDarkholme/yats.vim' " typescript syntax highlighting
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
 Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
@@ -226,23 +219,13 @@ autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
 let g:vim_json_syntax_conceal = 0
 
-" Language Server Protocol Client ----------------------------------------------
-
-" :help LanguageClient
-
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ }
 
 " Fuzzy Search -----------------------------------------------------------------
 
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|build$\|test$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
 
 " NerdTree ---------------------------------------------------------------------
 
