@@ -53,12 +53,12 @@ let s:p.k3 = "#4f5d64"
 let s:p.k4 = "#383e41"
 let s:p.k5 = "#292c2d"
 let s:p.k6 = "#242627"
-let s:p.t1 = "#71c6af"
-let s:p.t2 = "#22947b"
-let s:p.t3 = "#4b5f59"
-let s:p.t4 = "#363f3c"
-let s:p.t5 = "#282c2b"
-let s:p.t6 = "#242625"
+let s:p.t1 = "#e6a4be"
+let s:p.t2 = "#b46f8c"
+let s:p.t3 = "#67565c"
+let s:p.t4 = "#433b3e"
+let s:p.t5 = "#2e2a2c"
+let s:p.t6 = "#282526"
 
 let s:p.blacknormal   = "#5f5955"
 let s:p.blackbright   = "#5f5955"
@@ -151,10 +151,11 @@ call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
 call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
 call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
 call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
-call s:smartHi('RedshiftHighlighted',       s:p.k1, s:p.k4)
+call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
-call s:smartHi('RedshiftSelected',          '',     s:p.b4)
-call s:smartHi('RedshiftAttention',         s:p.k1, s:p.k4)
+call s:smartHi('RedshiftSelected',          '',     s:p.k4)
+call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
+call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -419,13 +420,16 @@ call s:linkGroup('RedshiftSelected', [
 \])
 
 call s:linkGroup('RedshiftAttention', [
-    \"Error",
-    \"ErrorMsg",
     \"ExtraWhitespace",
     \"JavascriptCommentTodo",
-    \"NeomakeErrorMsg",
     \"SpellBad",
     \"Todo",
+\])
+
+call s:linkGroup('RedshiftAttentionFg', [
+    \"Error",
+    \"ErrorMsg",
+    \"NeomakeErrorMsg",
 \])
 
 " ----
@@ -483,5 +487,3 @@ call s:linkGroup('RedShiftRed', [
     \"GitGutterDelete",
     \"GitGutterDeleteDefault",
 \])
-
-

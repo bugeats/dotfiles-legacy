@@ -53,28 +53,82 @@ font:
     y: 0
 
 
+# Palette ----------------------------------------------------------------------
+
+# Custom generated pallete based on HSLUV colors
+
+# default: &default_title This Post Has No Title
+# title: *default_title
+
+# salmon
+p_a1: &p_a1 '0xd8af8e'
+p_a2: &p_a2 '0xa57b55'
+p_a3: &p_a3 '0x645851'
+p_a4: &p_a4 '0x413c39'
+p_a5: &p_a5 '0x2d2b29'
+p_a6: &p_a6 '0x272524'
+# green
+p_b1: &p_b1 '0x94c390'
+p_b2: &p_b2 '0x5d9058'
+p_b3: &p_b3 '0x525e51'
+p_b4: &p_b4 '0x393e39'
+p_b5: &p_b5 '0x2a2c29'
+p_b6: &p_b6 '0x242624'
+# white
+p_d1: &p_d1 '0xb8b8aa'
+p_d2: &p_d2 '0x84847c'
+p_d3: &p_d3 '0x5b5b56'
+p_d4: &p_d4 '0x3d3d3a'
+p_d5: &p_d5 '0x2c2c29'
+p_d6: &p_d6 '0x262624'
+# yellow
+p_g1: &p_g1 '0xbbba81'
+p_g2: &p_g2 '0x888744'
+p_g3: &p_g3 '0x5c5b4e'
+p_g4: &p_g4 '0x3d3d37'
+p_g5: &p_g5 '0x2c2c29'
+p_g6: &p_g6 '0x262624'
+# blue
+p_k1: &p_k1 '0x83bfda'
+p_k2: &p_k2 '0x418da9'
+p_k3: &p_k3 '0x4f5d64'
+p_k4: &p_k4 '0x383e41'
+p_k5: &p_k5 '0x292c2d'
+p_k6: &p_k6 '0x242627'
+# pink
+p_t1: &p_t1 '0xe6a4be'
+p_t2: &p_t2 '0xb46f8c'
+p_t3: &p_t3 '0x67565c'
+p_t4: &p_t4 '0x433b3e'
+p_t5: &p_t5 '0x2e2a2c'
+p_t6: &p_t6 '0x282526'
+# ascii
+p_blacknormal:   &p_blacknormal   '0x5f5955'
+p_blackbright:   &p_blackbright   '0x5f5955'
+p_blackdim:      &p_blackdim      '0x403c3a'
+p_whitenormal:   &p_whitenormal   '0xc0b5ad'
+p_whitebright:   &p_whitebright   '0xc0b5ad'
+p_whitedim:      &p_whitedim      '0x8a827e'
+p_rednormal:     &p_rednormal     '0xd8af8e'
+p_redbright:     &p_redbright     '0xd8af8e'
+p_reddim:        &p_reddim        '0xa57b55'
+p_yellownormal:  &p_yellownormal  '0xa8bf85'
+p_yellowbright:  &p_yellowbright  '0xa8bf85'
+p_yellowdim:     &p_yellowdim     '0x748c4a'
+p_greennormal:   &p_greennormal   '0x71c6af'
+p_greenbright:   &p_greenbright   '0x71c6af'
+p_greendim:      &p_greendim      '0x22947b'
+p_cyannormal:    &p_cyannormal    '0x83bfda'
+p_cyanbright:    &p_cyanbright    '0x83bfda'
+p_cyandim:       &p_cyandim       '0x418da9'
+p_bluenormal:    &p_bluenormal    '0xc6ade1'
+p_bluebright:    &p_bluebright    '0xc6ade1'
+p_bluedim:       &p_bluedim       '0x9478b0'
+p_magentanormal: &p_magentanormal '0xe6a4be'
+p_magentabright: &p_magentabright '0xe6a4be'
+p_magentadim:    &p_magentadim    '0xb46f8c'
+
 # Colors -----------------------------------------------------------------------
-
-# Custom generated pallete based on HUSL colors
-
-# bg:             '0x272524'
-# fg:             '0xb8b8aa'
-# black-normal:   '0x5f5955'
-# black-dim:      '0x403c3a'
-# white-normal:   '0xc0b5ad'
-# white-dim:      '0x8a827e'
-# red-normal:     '0xd8af8e'
-# red-dim:        '0xa57b55'
-# yellow-normal:  '0xa8bf85'
-# yellow-dim:     '0x748c4a'
-# green-normal:   '0x71c6af'
-# green-dim:      '0x22947b'
-# cyan-normal:    '0x83bfda'
-# cyan-dim:       '0x418da9'
-# blue-normal:    '0xc6ade1'
-# blue-dim:       '0x9478b0'
-# magenta-normal: '0xe6a4be'
-# magenta-dim:    '0xb46f8c'
 
 background_opacity: 1.0
 
@@ -83,43 +137,43 @@ custom_cursor_colors: true
 
 colors:
   primary:
-    background: '0x272524'
-    foreground: '0xb8b8aa'
+    background: *p_a6
+    foreground: *p_d1
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text:   '0x403c3a'
-    cursor: '0xe6a4be'
+    text:   *p_k4
+    cursor: *p_k1
 
   normal:
-    black:   '0x5f5955'
-    red:     '0xd8af8e'
-    green:   '0x71c6af'
-    yellow:  '0xa8bf85'
-    blue:    '0xc6ade1'
-    magenta: '0xe6a4be'
-    cyan:    '0x83bfda'
-    white:   '0xc0b5ad'
+    black:   *p_blacknormal
+    red:     *p_rednormal
+    green:   *p_greennormal
+    yellow:  *p_yellownormal
+    blue:    *p_bluenormal
+    magenta: *p_magentanormal
+    cyan:    *p_cyannormal
+    white:   *p_whitenormal
 
   bright:
-    black:   '0x5f5955'
-    red:     '0xd8af8e'
-    green:   '0x71c6af'
-    yellow:  '0xa8bf85'
-    blue:    '0xc6ade1'
-    magenta: '0xe6a4be'
-    cyan:    '0x83bfda'
-    white:   '0xc0b5ad'
+    black:   *p_blackbright
+    red:     *p_redbright
+    green:   *p_greenbright
+    yellow:  *p_yellowbright
+    blue:    *p_bluebright
+    magenta: *p_magentabright
+    cyan:    *p_cyanbright
+    white:   *p_whitebright
 
   dim:
-    black:   '0x403c3a'
-    red:     '0xa57b55'
-    green:   '0x22947b'
-    yellow:  '0x748c4a'
-    blue:    '0x9478b0'
-    magenta: '0xb46f8c'
-    cyan:    '0x418da9'
-    white:   '0x8a827e'
+    black:   *p_blackdim
+    red:     *p_reddim
+    green:   *p_greendim
+    yellow:  *p_yellowdim
+    blue:    *p_bluedim
+    magenta: *p_magentadim
+    cyan:    *p_cyandim
+    white:   *p_whitedim
 
 
 # Key Bindings -----------------------------------------------------------------
