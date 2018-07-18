@@ -138,24 +138,24 @@ endfunction
 " Main Groups ------------------------------------------------------------------
 
 call s:smartHi('Normal',                    s:p.d1, s:p.a6)
-call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
+call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
+call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
+call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
+call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
+call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
+call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
 call s:smartHi('RedshiftComment',           s:p.d2, '')
 call s:smartHi('RedshiftControl',           s:p.a2, '')
 call s:smartHi('RedshiftControlActive',     s:p.a1, '')
-call s:smartHi('RedshiftKeyword',           s:p.b1, '')
-call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftGhost',             s:p.a3, '')
 call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
-call s:smartHi('RedshiftLocated',           '',     s:p.a5)
-call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
-call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
-call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
-call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
 call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
+call s:smartHi('RedshiftKeyword',           s:p.b1, '')
+call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
+call s:smartHi('RedshiftLocated',           '',     s:p.a5)
+call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
-call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
-call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -200,6 +200,7 @@ call s:linkGroup('RedshiftNormal', [
     \"WildMenu",
     \"clojureKeyword",
     \"clojureMacro",
+    \"htmlTagName",
     \"javascriptArrayMethod",
     \"javascriptBOMNavigatorProp",
     \"javascriptBlock",
@@ -251,6 +252,8 @@ call s:linkGroup('RedshiftControl', [
     \"generalParens",
     \"haskellDelimiter",
     \"haskellOperators",
+    \"htmlEndTag",
+    \"htmlTag",
     \"javascriptArrowFunc",
     \"javascriptBraces",
     \"javascriptBrackets",
@@ -266,6 +269,12 @@ call s:linkGroup('RedshiftControl', [
     \"javascriptParens",
     \"javascriptProperty",
     \"javascriptTemplateSB",
+    \"jsFuncBraces",
+    \"jsFuncParens",
+    \"jsNoise",
+    \"jsObjectBraces",
+    \"jsOperator",
+    \"jsParens",
     \"jsonBraces",
     \"jsonNoise",
     \"jsxAttributeBraces",
@@ -281,6 +290,7 @@ call s:linkGroup('RedshiftControl', [
     \"pugAttributesDelimiter",
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
+    \"shVarAssign",
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"taskpaperListItem",
@@ -333,10 +343,13 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptNodeGlobal",
     \"javascriptOperator",
     \"javascriptRepeat",
+    \"javascriptReserved",
     \"javascriptReturn",
     \"javascriptSwitch",
     \"javascriptTry",
     \"javascriptVariable",
+    \"jsGlobalObjects",
+    \"jsStorageClass",
     \"luaCond",
     \"luaFunction",
     \"luaIn",
@@ -400,8 +413,8 @@ call s:linkGroup('RedshiftGhostActive', [
 \])
 
 call s:linkGroup('RedshiftLocated', [
-    \"CursorLine",
     \"CursorColumn",
+    \"CursorLine",
 \])
 
 call s:linkGroup('RedshiftHighlighted', [
@@ -413,10 +426,10 @@ call s:linkGroup('RedshiftHighlightedAlt', [
 \])
 
 call s:linkGroup('RedshiftSelected', [
-    \"Visual",
-    \"iCursor",
     \"Cursor",
     \"TermCursor",
+    \"Visual",
+    \"iCursor",
 \])
 
 call s:linkGroup('RedshiftAttention', [
@@ -437,31 +450,31 @@ call s:linkGroup('RedshiftAttentionFg', [
 call s:linkGroup('RedshiftChromeNormal', [
     \"NERDTreeCWD",
     \"NERDTreeDir",
-    \"NERDTreeFile",
     \"NERDTreeExecFile",
+    \"NERDTreeFile",
 \])
 
 call s:linkGroup('RedshiftChromeMin', [
-    \"NERDTreeDirSlash",
-    \"NERDTreeOpenable",
     \"NERDTreeClosable",
+    \"NERDTreeDirSlash",
     \"NERDTreeFlags",
+    \"NERDTreeOpenable",
 \])
 
 call s:linkGroup('RedshiftChromePanel', [
+    \"Pmenu",
+    \"PmenuSbar",
+    \"PmenuThumb",
     \"StatusLineNC",
     \"TabLine",
     \"TabLineFill",
     \"VertSplit",
-    \"Pmenu",
-    \"PmenuSbar",
-    \"PmenuThumb",
 \])
 
 call s:linkGroup('RedshiftChromePanelActive', [
-    \"TabLineSel",
     \"PmenuSel",
     \"StatusLine",
+    \"TabLineSel",
 \])
 
 " ----
@@ -476,8 +489,8 @@ call s:linkGroup('RedShiftGreen', [
 call s:linkGroup('RedShiftYellow', [
     \"DiffChange",
     \"GitGutterChange",
-    \"GitGutterChangeDelete",
     \"GitGutterChangeDefault",
+    \"GitGutterChangeDelete",
     \"GitGutterChangeDeleteDefault",
     \"NERDTreeGitStatusDirDirty",
 \])
