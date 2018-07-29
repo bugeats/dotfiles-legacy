@@ -28,15 +28,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mkitt/tabline.vim'
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint' }
+Plug 'neomake/neomake', { 'do': 'npm install -g eslint htmlhint' }
 Plug 'neovim/node-host'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
+Plug 'othree/csscomplete.vim'
 Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -48,19 +50,20 @@ Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
 " Misc Language
-Plug 'elzr/vim-json',             { 'for': ['json'] }
-Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
-Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
-Plug 'tpope/vim-markdown',        { 'for': ['markdown'] }
+Plug 'elzr/vim-json',             { 'for': ['json'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
+Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
+Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 
 " Javascript Plugins
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
 Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'chemzqm/vim-jsx-improve'
 
 " Clojure Plugins
 " Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
@@ -342,6 +345,12 @@ call tcomment#type#Define('slim', '/ %s')
 let g:gitgutter_eager = 0
 
 
+" Markdown ---------------------------------------------------------------------
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+
+
 " EasyAlign --------------------------------------------------------------------
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -372,6 +381,12 @@ let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
+aug omnicomplete
+  au!
+  au FileType css,stylus setl omnifunc=csscomplete#CompleteCSS
+  au FileType javascript,jsx setl omnifunc=tern#Complete
+aug END
+
 
 " Neosnippets ------------------------------------------------------------------
 
@@ -399,8 +414,10 @@ endif
 
 call neomake#configure#automake('nrwi', 500)
 
-let g:neomake_javascript_enabled_makers = ['eslint_d']
+" let g:neomake_javascript_enabled_makers = ['eslint_d']
+let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_pug_enabled_makers = ['puglint']
+let g:neomake_html_enabled_makers = ['htmlhint']
 "
 let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
 let g:neomake_error_sign={'texthl': 'NeomakeErrorMsg'}
