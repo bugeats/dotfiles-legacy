@@ -60,6 +60,8 @@ font:
 # default: &default_title This Post Has No Title
 # title: *default_title
 
+# https://www.dropbox.com/s/nj8zhimo4ykoxp0/redshift_perlin_alt3.png?dl=0
+
 # salmon
 p_a1: &p_a1 '0xd8af8e'
 p_a2: &p_a2 '0xa57b55'
